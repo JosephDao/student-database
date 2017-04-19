@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="images">
+    <file>magnifying-glass-clipart.jpg</file>
+  </qresource>
+</RCC>
