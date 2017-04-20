@@ -1,4 +1,5 @@
 #include <QSqlRelationalTableModel>
+#include <qmessagebox.h>
 
 #include "admin.h"
 #include "student.h"
@@ -104,18 +105,26 @@ void Admin::setClasses()
 	show();
 }
 
-
 void Admin::displayStudentForm()
 {
+	id = searchLineEdit->text().toInt();
 	StudentForm *studentForm = new StudentForm;
+	studentForm->setStudentForm(id);
+	searchLineEdit->clear();
 }
 
 void Admin::displayCourseForm()
 {
+	id = searchLineEdit->text().toInt();
 	CourseForm *courseForm = new CourseForm;
+	courseForm->setCourseForm(id);
+	searchLineEdit->clear();
 }
 
 void Admin::displayClassForm()
 {
+	id = searchLineEdit->text().toInt();
 	ClassForm *classForm = new ClassForm;
+	classForm->setClassForm(id);
+	searchLineEdit->clear();
 }

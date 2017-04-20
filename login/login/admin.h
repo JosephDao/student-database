@@ -56,6 +56,7 @@ private:
 	QSqlRelationalTableModel *studentModel;
 	QSqlRelationalTableModel *courseModel;
 	QSqlRelationalTableModel *classModel;
+	int id;
 };
 
 #endif

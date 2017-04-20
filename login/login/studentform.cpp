@@ -1,40 +1,14 @@
 #include <QDataWidgetMapper>
+#include <QSqlRecord>
 #include <QSqlRelationalDelegate>
 #include <QSqlRelationalTableModel>
+#include <qmessagebox.h>
 
 #include "studentForm.h"
 
 StudentForm::StudentForm(QWidget *parent) : QDialog(parent)
 {
 	setupUi(this);
-
-	studentModel = new QSqlRelationalTableModel;
-	studentModel->setTable("student");
-	studentModel->select();
-
-	studentMapper = new QDataWidgetMapper;
-	studentMapper->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
-	studentMapper->setModel(studentModel);
-	studentMapper->setItemDelegate(new QSqlRelationalDelegate(this));
-	studentMapper->addMapping(studentIdLineEdit, Student_id);
-	studentMapper->addMapping(fNameLineEdit, Student_fName);
-	studentMapper->addMapping(lNameLineEdit, Student_lName);
-	studentMapper->addMapping(regStatusLineEdit, Student_regStatus);
-	studentMapper->addMapping(gpaLineEdit, Student_gpa);
-	studentMapper->addMapping(emailLineEdit, Student_email);
-	studentMapper->addMapping(passwordLineEdit, Student_password);
-
-	studentMapper->toFirst();
-
-	connect(firstButton, SIGNAL(clicked()), studentMapper, SLOT(toFirst()));
-	connect(previousButton, SIGNAL(clicked()), studentMapper, SLOT(toPrevious()));
-	connect(nextButton, SIGNAL(clicked()), studentMapper, SLOT(toNext()));
-	connect(lastButton, SIGNAL(clicked()), studentMapper, SLOT(toLast()));
-	connect(addButton, SIGNAL(clicked()), this, SLOT(addEmployee()));
-	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteEmployee()));
-	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
-
-	show();
 }
 
 void StudentForm::addEmployee()
@@ -59,4 +33,48 @@ void StudentForm::deleteEmployee()
 	studentModel->removeRow(studentRow);
 	studentMapper->submit();
 	studentMapper->setCurrentIndex(qMin(studentRow, studentModel->rowCount() - 1));
+}
+
+void StudentForm::setStudentForm(int id)
+{
+	studentModel = new QSqlRelationalTableModel;
+	studentModel->setTable("student");
+	studentModel->select();
+
+	studentMapper = new QDataWidgetMapper;
+	studentMapper->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
+	studentMapper->setModel(studentModel);
+	studentMapper->setItemDelegate(new QSqlRelationalDelegate(this));
+	studentMapper->addMapping(studentIdLineEdit, Student_id);
+	studentMapper->addMapping(fNameLineEdit, Student_fName);
+	studentMapper->addMapping(lNameLineEdit, Student_lName);
+	studentMapper->addMapping(regStatusLineEdit, Student_regStatus);
+	studentMapper->addMapping(gpaLineEdit, Student_gpa);
+	studentMapper->addMapping(emailLineEdit, Student_email);
+	studentMapper->addMapping(passwordLineEdit, Student_password);
+
+	if (id >= 0)
+	{
+		for (int row = 0; row < studentModel->rowCount(); ++row)
+		{
+			QSqlRecord record = studentModel->record(row);
+			if (record.value(Student_id).toInt() == id)
+			{
+				studentMapper->setCurrentIndex(row);
+				break;
+			}
+		}
+	}
+	else
+		studentMapper->toFirst();
+
+	connect(firstButton, SIGNAL(clicked()), studentMapper, SLOT(toFirst()));
+	connect(previousButton, SIGNAL(clicked()), studentMapper, SLOT(toPrevious()));
+	connect(nextButton, SIGNAL(clicked()), studentMapper, SLOT(toNext()));
+	connect(lastButton, SIGNAL(clicked()), studentMapper, SLOT(toLast()));
+	connect(addButton, SIGNAL(clicked()), this, SLOT(addEmployee()));
+	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteEmployee()));
+	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
+
+	show();
 }

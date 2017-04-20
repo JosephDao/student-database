@@ -12,6 +12,7 @@ class ClassForm : public QDialog, public Ui::classFormDialog
 
 public:
 	ClassForm(QWidget *parent = 0);
+	void setClassForm(int);
 
 private:
 	enum Class

@@ -12,6 +12,7 @@ class CourseForm : public QDialog, public Ui::courseFormDialog
 
 public:
 	CourseForm(QWidget *parent = 0);
+	void setCourseForm(int);
 
 private slots:
 	void addCourse();

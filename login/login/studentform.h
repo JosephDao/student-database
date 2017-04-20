@@ -12,6 +12,7 @@ class StudentForm : public QDialog, public Ui::studentFormDialog
 
 public:
 	StudentForm(QWidget *parent = 0);
+	void setStudentForm(int);
 
 private slots:
 	void addEmployee();
