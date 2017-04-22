@@ -10,7 +10,7 @@ CONFIG += qtestlib debug
 DEFINES += WIN64 QT_DLL QT_SQL_LIB QT_TESTLIB_LIB QT_UITOOLS_LIB QT_WIDGETS_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
-    ./GeneratedFiles/Debug
+    Debug
 DEPENDPATH += .
 MOC_DIR += .moc\$(ConfigurationName)
 OBJECTS_DIR += debug

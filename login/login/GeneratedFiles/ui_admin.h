@@ -30,13 +30,14 @@ class Ui_AdminMainWindow
 public:
     QWidget *centralwidget;
     QTableView *adminView;
-    QWidget *layoutWidget;
+    QPushButton *editButton;
+    QLineEdit *searchLineEdit;
+    QWidget *widget;
     QVBoxLayout *verticalLayout;
     QPushButton *studentButton;
     QPushButton *courseButton;
     QPushButton *classButton;
-    QPushButton *editButton;
-    QLineEdit *searchLineEdit;
+    QPushButton *gradeButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -46,6 +47,7 @@ public:
             AdminMainWindow->setObjectName(QStringLiteral("AdminMainWindow"));
         AdminMainWindow->resize(1636, 911);
         AdminMainWindow->setStyleSheet(QLatin1String("QMainWindow {background-color: rgb(235, 239, 240);}\n"
+"QLineEdit {border: 0px;}\n"
 "QPushButton {background-color: rgb(0, 0, 127); color: white; border: 2 px; border-radius: 10 px;}\n"
 "\n"
 ""));
@@ -53,61 +55,70 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         adminView = new QTableView(centralwidget);
         adminView->setObjectName(QStringLiteral("adminView"));
-        adminView->setGeometry(QRect(380, 170, 1281, 731));
-        layoutWidget = new QWidget(centralwidget);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(30, 180, 313, 169));
-        verticalLayout = new QVBoxLayout(layoutWidget);
+        adminView->setGeometry(QRect(400, 170, 1281, 731));
+        editButton = new QPushButton(centralwidget);
+        editButton->setObjectName(QStringLiteral("editButton"));
+        editButton->setGeometry(QRect(1380, 60, 61, 51));
+        QFont font;
+        font.setFamily(QStringLiteral("Arial"));
+        font.setPointSize(12);
+        editButton->setFont(font);
+        editButton->setFocusPolicy(Qt::StrongFocus);
+        editButton->setStyleSheet(QStringLiteral(""));
+        searchLineEdit = new QLineEdit(centralwidget);
+        searchLineEdit->setObjectName(QStringLiteral("searchLineEdit"));
+        searchLineEdit->setGeometry(QRect(640, 60, 741, 51));
+        searchLineEdit->setMinimumSize(QSize(251, 51));
+        QFont font1;
+        font1.setFamily(QStringLiteral("Arial"));
+        font1.setPointSize(11);
+        searchLineEdit->setFont(font1);
+        searchLineEdit->setAlignment(Qt::AlignCenter);
+        widget = new QWidget(centralwidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(50, 191, 303, 227));
+        verticalLayout = new QVBoxLayout(widget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        studentButton = new QPushButton(layoutWidget);
+        studentButton = new QPushButton(widget);
         studentButton->setObjectName(QStringLiteral("studentButton"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(studentButton->sizePolicy().hasHeightForWidth());
         studentButton->setSizePolicy(sizePolicy);
-        studentButton->setMinimumSize(QSize(311, 51));
-        QFont font;
-        font.setFamily(QStringLiteral("Arial"));
-        font.setPointSize(12);
+        studentButton->setMinimumSize(QSize(301, 51));
         studentButton->setFont(font);
 
         verticalLayout->addWidget(studentButton);
 
-        courseButton = new QPushButton(layoutWidget);
+        courseButton = new QPushButton(widget);
         courseButton->setObjectName(QStringLiteral("courseButton"));
         sizePolicy.setHeightForWidth(courseButton->sizePolicy().hasHeightForWidth());
         courseButton->setSizePolicy(sizePolicy);
-        courseButton->setMinimumSize(QSize(311, 51));
+        courseButton->setMinimumSize(QSize(301, 51));
         courseButton->setFont(font);
 
         verticalLayout->addWidget(courseButton);
 
-        classButton = new QPushButton(layoutWidget);
+        classButton = new QPushButton(widget);
         classButton->setObjectName(QStringLiteral("classButton"));
         sizePolicy.setHeightForWidth(classButton->sizePolicy().hasHeightForWidth());
         classButton->setSizePolicy(sizePolicy);
-        classButton->setMinimumSize(QSize(311, 51));
+        classButton->setMinimumSize(QSize(301, 51));
         classButton->setFont(font);
 
         verticalLayout->addWidget(classButton);
 
-        editButton = new QPushButton(centralwidget);
-        editButton->setObjectName(QStringLiteral("editButton"));
-        editButton->setGeometry(QRect(1230, 60, 51, 51));
-        QFont font1;
-        font1.setFamily(QStringLiteral("Arial"));
-        font1.setPointSize(11);
-        editButton->setFont(font1);
-        editButton->setFocusPolicy(Qt::StrongFocus);
-        editButton->setStyleSheet(QStringLiteral("qproperty-icon: url(\":/images/magnifying-glass-clipart.jpg\"); qproperty-iconSize: 58px 58px;"));
-        searchLineEdit = new QLineEdit(centralwidget);
-        searchLineEdit->setObjectName(QStringLiteral("searchLineEdit"));
-        searchLineEdit->setGeometry(QRect(770, 60, 461, 51));
-        searchLineEdit->setMinimumSize(QSize(251, 51));
-        searchLineEdit->setFont(font1);
-        searchLineEdit->setAlignment(Qt::AlignCenter);
+        gradeButton = new QPushButton(widget);
+        gradeButton->setObjectName(QStringLiteral("gradeButton"));
+        sizePolicy.setHeightForWidth(gradeButton->sizePolicy().hasHeightForWidth());
+        gradeButton->setSizePolicy(sizePolicy);
+        gradeButton->setMinimumSize(QSize(301, 51));
+        gradeButton->setFont(font);
+
+        verticalLayout->addWidget(gradeButton);
+
         AdminMainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(AdminMainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -119,9 +130,11 @@ public:
 
         retranslateUi(AdminMainWindow);
 
+        editButton->setDefault(false);
         studentButton->setDefault(true);
         courseButton->setDefault(true);
         classButton->setDefault(true);
+        gradeButton->setDefault(true);
 
 
         QMetaObject::connectSlotsByName(AdminMainWindow);
@@ -130,10 +143,13 @@ public:
     void retranslateUi(QMainWindow *AdminMainWindow)
     {
         AdminMainWindow->setWindowTitle(QApplication::translate("AdminMainWindow", "MainWindow", Q_NULLPTR));
+        editButton->setText(QApplication::translate("AdminMainWindow", "Edit", Q_NULLPTR));
+        searchLineEdit->setText(QString());
+        searchLineEdit->setPlaceholderText(QString());
         studentButton->setText(QApplication::translate("AdminMainWindow", "Student", Q_NULLPTR));
         courseButton->setText(QApplication::translate("AdminMainWindow", "Course", Q_NULLPTR));
         classButton->setText(QApplication::translate("AdminMainWindow", "Class", Q_NULLPTR));
-        searchLineEdit->setPlaceholderText(QApplication::translate("AdminMainWindow", "optional id", Q_NULLPTR));
+        gradeButton->setText(QApplication::translate("AdminMainWindow", "Grade", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -8,16 +8,25 @@ message("You are running qmake on a generated .pro file. This may not work!")
 
 
 HEADERS += ./login.h \
-    ./student.h \
+    ./courseform.h \
+    ./classform.h \
+    ./studentform.h \
     ./admin.h \
-    ./studentform.h
-SOURCES += ./login.cpp \
+    ./student.h \
+    ./gradeform.h
+SOURCES += ./admin.cpp \
+    ./classform.cpp \
+    ./courseform.cpp \
+    ./login.cpp \
     ./main.cpp \
     ./student.cpp \
-    ./admin.cpp \
-    ./studentform.cpp
+    ./studentform.cpp \
+    ./gradeform.cpp
 FORMS += ./login.ui \
     ./student.ui \
     ./admin.ui \
-    ./studentform.ui
+    ./studentform.ui \
+    ./courseform.ui \
+    ./classform.ui \
+    ./gradeform.ui
 RESOURCES += login.qrc

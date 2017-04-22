@@ -30,6 +30,7 @@ private:
 		Student_password = 6
 	};
 
+	int id;
 	int studentRow;
 	QDataWidgetMapper *studentMapper;
 	QSqlRelationalTableModel *studentModel;

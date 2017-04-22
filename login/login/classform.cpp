@@ -2,6 +2,7 @@
 #include <QSqlRecord>
 #include <QSqlRelationalDelegate>
 #include <QSqlRelationalTableModel>
+#include <QMessageBox>
 
 #include "classform.h"
 
@@ -52,7 +53,9 @@ void ClassForm::setClassForm(int id)
 	classMapper->addMapping(deliveryModeLineEdit, Class_deliveryMode);
 	classMapper->addMapping(passwordLineEdit, Class_crseNo);
 
-	if (id >= 0)
+	if (id == 0)
+		classMapper->toFirst();
+	else
 	{
 		for (int row = 0; row < classModel->rowCount(); ++row)
 		{
@@ -64,16 +67,14 @@ void ClassForm::setClassForm(int id)
 			}
 		}
 	}
-	else
-		classMapper->toFirst();
 
 	connect(firstButton, SIGNAL(clicked()), classMapper, SLOT(toFirst()));
 	connect(previousButton, SIGNAL(clicked()), classMapper, SLOT(toPrevious()));
 	connect(nextButton, SIGNAL(clicked()), classMapper, SLOT(toNext()));
 	connect(lastButton, SIGNAL(clicked()), classMapper, SLOT(toLast()));
-	connect(addButton, SIGNAL(clicked()), this, SLOT(addEmployee()));
-	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteEmployee()));
+	connect(addButton, SIGNAL(clicked()), this, SLOT(addClass()));
+	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteClass()));
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
 
-	show();
+	exec();
 }

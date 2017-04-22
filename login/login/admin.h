@@ -13,14 +13,6 @@ class Admin : public QMainWindow, public Ui::AdminMainWindow
 public:
 	Admin(QWidget *parent = Q_NULLPTR);
 
-private slots:
-	void setStudents();
-	void setCourses();
-	void setClasses();
-	void displayStudentForm();
-	void displayCourseForm();
-	void displayClassForm();
-
 private:
 	enum studentAttributes
 	{
@@ -35,28 +27,50 @@ private:
 
 	enum courseAttributes
 	{
-		Course_id = 0,
-		Course_title = 1,
-		Course_subj = 2
+		Course_subj = 0,
+		Course_no = 1,
+		Course_title = 2
 	};
 
 	enum Class
 	{
 		Class_crn = 0,
-		Class_startTime = 1,
-		Class_endTime = 2,
-		Class_days = 3,
-		Class_deliveryMode = 4,
-		Class_crseNo = 5
+		Class_subj = 1,
+		Class_crseNo = 2,
+		Class_title = 3,
+		Class_startTime = 4,
+		Class_endTime = 5,
+		Class_days = 6,
+		Class_deliveryMode = 7
+	};
+
+	enum Enroll
+	{
+		Enroll_studentId = 0,
+		Enroll_crn = 1,
+		Enroll_assignment = 2,
+		Enroll_grade = 3
 	};
 
 	QHeaderView *studentHeader;
 	QHeaderView *courseHeader;
 	QHeaderView *classHeader;
+	QHeaderView *enrollHeader;
 	QSqlRelationalTableModel *studentModel;
 	QSqlRelationalTableModel *courseModel;
 	QSqlRelationalTableModel *classModel;
+	QSqlRelationalTableModel *enrollModel;
 	int id;
+
+private slots:
+	void setStudents();
+	void setCourses();
+	void setClasses();
+	void setGrades();
+	void displayGradeForm();
+	void displayStudentForm();
+	void displayCourseForm();
+	void displayClassForm();
 };
 
 #endif

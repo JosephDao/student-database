@@ -45,7 +45,9 @@ void CourseForm::setCourseForm(int id)
 	courseMapper->addMapping(titleLineEdit, Course_title);
 	courseMapper->addMapping(subjectLineEdit, Course_subj);
 
-	if (id >= 0)
+	if (id == 0)
+		courseMapper->toFirst();
+	else
 	{
 		for (int row = 0; row < courseModel->rowCount(); ++row)
 		{
@@ -57,16 +59,14 @@ void CourseForm::setCourseForm(int id)
 			}
 		}
 	}
-	else
-		courseMapper->toFirst();
-
+		
 	connect(firstButton, SIGNAL(clicked()), courseMapper, SLOT(toFirst()));
 	connect(previousButton, SIGNAL(clicked()), courseMapper, SLOT(toPrevious()));
 	connect(nextButton, SIGNAL(clicked()), courseMapper, SLOT(toNext()));
 	connect(lastButton, SIGNAL(clicked()), courseMapper, SLOT(toLast()));
-	connect(addButton, SIGNAL(clicked()), this, SLOT(addEmployee()));
-	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteEmployee()));
+	connect(addButton, SIGNAL(clicked()), this, SLOT(addCourse()));
+	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteCourse()));
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
 
-	show();
+	exec();
 }

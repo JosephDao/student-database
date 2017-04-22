@@ -17,7 +17,7 @@ Login::Login(QWidget *parent) : QMainWindow(parent)
 bool Login::createConnection()
 {
 	QSqlDatabase lmsDatabase = QSqlDatabase::addDatabase("QMYSQL");
-	lmsDatabase.setDatabaseName("lms");
+	lmsDatabase.setDatabaseName("college");
 	lmsDatabase.setHostName("localhost");
 	lmsDatabase.setUserName("josephdao");
 	lmsDatabase.setPassword("Tractor.7");

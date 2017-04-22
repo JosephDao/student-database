@@ -2,9 +2,9 @@
 #include <QSqlRecord>
 #include <QSqlRelationalDelegate>
 #include <QSqlRelationalTableModel>
-#include <qmessagebox.h>
+#include <QMessageBox>
 
-#include "studentForm.h"
+#include "studentform.h"
 
 StudentForm::StudentForm(QWidget *parent) : QDialog(parent)
 {
@@ -53,7 +53,17 @@ void StudentForm::setStudentForm(int id)
 	studentMapper->addMapping(emailLineEdit, Student_email);
 	studentMapper->addMapping(passwordLineEdit, Student_password);
 
-	if (id >= 0)
+	connect(firstButton, SIGNAL(clicked()), studentMapper, SLOT(toFirst()));
+	connect(previousButton, SIGNAL(clicked()), studentMapper, SLOT(toPrevious()));
+	connect(nextButton, SIGNAL(clicked()), studentMapper, SLOT(toNext()));
+	connect(lastButton, SIGNAL(clicked()), studentMapper, SLOT(toLast()));
+	connect(addButton, SIGNAL(clicked()), this, SLOT(addEmployee()));
+	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteEmployee()));
+	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
+
+	if (id == 0)
+		studentMapper->toFirst();
+	else
 	{
 		for (int row = 0; row < studentModel->rowCount(); ++row)
 		{
@@ -65,16 +75,6 @@ void StudentForm::setStudentForm(int id)
 			}
 		}
 	}
-	else
-		studentMapper->toFirst();
 
-	connect(firstButton, SIGNAL(clicked()), studentMapper, SLOT(toFirst()));
-	connect(previousButton, SIGNAL(clicked()), studentMapper, SLOT(toPrevious()));
-	connect(nextButton, SIGNAL(clicked()), studentMapper, SLOT(toNext()));
-	connect(lastButton, SIGNAL(clicked()), studentMapper, SLOT(toLast()));
-	connect(addButton, SIGNAL(clicked()), this, SLOT(addEmployee()));
-	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteEmployee()));
-	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
-
-	show();
+	exec();
 }
