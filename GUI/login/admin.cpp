@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include <QSqlRelationalTableModel>
 
 #include "admin.h"
@@ -14,6 +15,7 @@ Admin::Admin(QWidget *parent) : QMainWindow(parent)
 	connect(courseButton, SIGNAL(clicked()), this, SLOT(setCourses()));
 	connect(classButton, SIGNAL(clicked()), this, SLOT(setClasses()));
 	connect(gradeButton, SIGNAL(clicked()), this, SLOT(setGrades()));
+	connect(gpaButton, SIGNAL(clicked()), this, SLOT(setGPA()));
 
 	setWindowState(Qt::WindowMaximized);
 
@@ -25,11 +27,12 @@ void Admin::setStudents()
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayCourseForm()));
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayClassForm()));
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()));
-	connect(editButton, SIGNAL(clicked()), this, SLOT(displayStudentForm()));
+	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayError()));
+	connect(editButton, SIGNAL(clicked()), this, SLOT(displayStudentForm()), Qt::UniqueConnection);
 
 	studentModel = new QSqlRelationalTableModel;
 	studentModel->setTable("student");
-	studentModel->setHeaderData(Student_id, Qt::Horizontal, tr("Student ID"));
+	studentModel->setHeaderData(Student_id, Qt::Horizontal, tr("Student Id"));
 	studentModel->setHeaderData(Student_fName, Qt::Horizontal, tr("First Name"));
 	studentModel->setHeaderData(Student_lName, Qt::Horizontal, tr("Last Name"));
 	studentModel->setHeaderData(Student_regStatus, Qt::Horizontal, tr("Registration Status"));
@@ -54,13 +57,15 @@ void Admin::setCourses()
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayStudentForm()));
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayClassForm()));
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()));
-	connect(editButton, SIGNAL(clicked()), this, SLOT(displayCourseForm()));
+	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayError()));
+	connect(editButton, SIGNAL(clicked()), this, SLOT(displayCourseForm()), Qt::UniqueConnection);
 
 	courseModel = new QSqlRelationalTableModel(this);
 	courseModel->setTable("course");
 	courseModel->setHeaderData(Course_subj, Qt::Horizontal, tr("Subject"));
-	courseModel->setHeaderData(Course_no, Qt::Horizontal, tr("Course Number"));
+	courseModel->setHeaderData(Course_no, Qt::Horizontal, tr("Course Id"));
 	courseModel->setHeaderData(Course_title, Qt::Horizontal, tr("Title"));
+	courseModel->setHeaderData(Course_creditHrs, Qt::Horizontal, tr("Credit Hours"));
 	courseModel->select();
 
 	adminView->setModel(courseModel);
@@ -79,11 +84,12 @@ void Admin::setClasses()
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayStudentForm()));
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayCourseForm()));
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()));
-	connect(editButton, SIGNAL(clicked()), this, SLOT(displayClassForm()));
+	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayError()));
+	connect(editButton, SIGNAL(clicked()), this, SLOT(displayClassForm()), Qt::UniqueConnection);
 
 	classModel = new QSqlRelationalTableModel;
 	classModel->setTable("class");
-	classModel->setHeaderData(Class_crn, Qt::Horizontal, tr("Course Reference Number"));
+	classModel->setHeaderData(Class_crn, Qt::Horizontal, tr("Class Id"));
 	classModel->setHeaderData(Class_subj, Qt::Horizontal, tr("Subject"));
 	classModel->setHeaderData(Class_crseNo, Qt::Horizontal, tr("Course Number"));
 	classModel->setHeaderData(Class_title, Qt::Horizontal, tr("Title"));
@@ -109,7 +115,9 @@ void Admin::setGrades()
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayStudentForm()));
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayCourseForm()));
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayClassForm()));
-	connect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()));
+	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayError()));
+
+	connect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()), Qt::UniqueConnection);
 
 	enrollModel = new QSqlRelationalTableModel;
 	enrollModel->setTable("enroll");
@@ -130,13 +138,39 @@ void Admin::setGrades()
 	enrollHeader->setSectionResizeMode(QHeaderView::Stretch);
 }
 
+void Admin::setGPA()
+{
+	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayStudentForm()));
+	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayCourseForm()));
+	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayClassForm()));
+	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()));
+	connect(editButton, SIGNAL(clicked()), this, SLOT(displayError()), Qt::UniqueConnection);
+
+	gpaModel = new QSqlRelationalTableModel;
+	gpaModel->setTable("gpa");
+	gpaModel->select();
+
+	gpaModel->setHeaderData(GPA_studentId, Qt::Horizontal, tr("Student Id"));
+	gpaModel->setHeaderData(GPA_gpa, Qt::Horizontal, tr("GPA"));
+	adminView->setModel(gpaModel);
+	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
+	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
+	adminView->resizeColumnsToContents();
+	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+	studentHeader = adminView->horizontalHeader();
+	studentHeader->setStretchLastSection(true);
+	studentHeader->setSectionResizeMode(QHeaderView::Stretch);
+
+	show();
+}
+
 void Admin::displayStudentForm()
 {
 	id = searchLineEdit->text().toInt();
 	StudentForm studentForm;
 	studentForm.setStudentForm(id);
 	searchLineEdit->clear();
-	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayStudentForm()));
 }
 
 void Admin::displayCourseForm()
@@ -145,7 +179,6 @@ void Admin::displayCourseForm()
 	CourseForm courseForm;
 	courseForm.setCourseForm(id);
 	searchLineEdit->clear();
-	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayCourseForm()));
 }
 
 void Admin::displayClassForm()
@@ -154,7 +187,6 @@ void Admin::displayClassForm()
 	ClassForm classForm;
 	classForm.setClassForm(id);
 	searchLineEdit->clear();
-	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayClassForm()));
 }
 
 void Admin::displayGradeForm()
@@ -163,6 +195,9 @@ void Admin::displayGradeForm()
 	GradeForm gradeForm;
 	gradeForm.setGradeForm(id);
 	searchLineEdit->clear();
-	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()));
 }
 
+void Admin::displayError()
+{
+	QMessageBox::warning(this, "Error", "GPA cannot be edited from here.");
+}

@@ -11,6 +11,7 @@ Student::Student(QWidget *parent) : QMainWindow(parent)
 	connect(refreshButton, SIGNAL(clicked()), this, SLOT(refresh()));
 	connect(classButton, SIGNAL(clicked()), this, SLOT(setClasses()));
 	connect(gradeButton, SIGNAL(clicked()), this, SLOT(setGrades()));
+	connect(gpaButton, SIGNAL(clicked()), this, SLOT(setGPA()));
 	setWindowState(Qt::WindowMaximized);
 }
 
@@ -43,7 +44,6 @@ void Student::displayStudent(QSqlRelationalTableModel* studentModel)
 	studentView->setModel(studentModel);
 	studentView->setSelectionMode(QAbstractItemView::SingleSelection);
 	studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
-	studentView->setColumnHidden(Student_password, true);
 	studentView->resizeColumnsToContents();
 	studentView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	
@@ -60,21 +60,24 @@ void Student::refresh()
 
 void Student::setClasses()
 {
+	studentView->setColumnHidden(0, false);
+	studentView->setColumnHidden(6, false);
+
 	classModel = new QSqlRelationalTableModel;
-	classModel->setTable("class");
+	classModel->setTable("studentclass");
 	classModel->setFilter("studentId = " + studentId);
-	classModel->setRelation(Class_crn, QSqlRelation("enroll", "CRN", "CRN"));
-	classModel->setJoinMode(QSqlRelationalTableModel::InnerJoin);
 	classModel->select();
 
-	classModel->setHeaderData(Class_crn, Qt::Horizontal, tr("Course Reference Number"));
-	classModel->setHeaderData(Class_subj, Qt::Horizontal, tr("Subject"));
-	classModel->setHeaderData(Class_crseNo, Qt::Horizontal, tr("Course Number"));
-	classModel->setHeaderData(Class_title, Qt::Horizontal, tr("Title"));
-	classModel->setHeaderData(Class_startTime, Qt::Horizontal, tr("Start Time"));
-	classModel->setHeaderData(Class_endTime, Qt::Horizontal, tr("End Time"));
-	classModel->setHeaderData(Class_days, Qt::Horizontal, tr("Days"));
-	classModel->setHeaderData(Class_deliveryMode, Qt::Horizontal, tr("Delivery Mode"));
+	classModel->setHeaderData(StudentClass_id, Qt::Horizontal, tr("Student Id"));
+	classModel->setHeaderData(StudentClass_crn, Qt::Horizontal, tr("Course Reference Number"));
+	classModel->setHeaderData(StudentClass_subj, Qt::Horizontal, tr("Subject"));
+	classModel->setHeaderData(StudentClass_crseNo, Qt::Horizontal, tr("Course Number"));
+	classModel->setHeaderData(StudentClass_title, Qt::Horizontal, tr("Title"));
+	classModel->setHeaderData(StudentClass_startTime, Qt::Horizontal, tr("Start Time"));
+	classModel->setHeaderData(StudentClass_endTime, Qt::Horizontal, tr("End Time"));
+	classModel->setHeaderData(StudentClass_days, Qt::Horizontal, tr("Days"));
+	classModel->setHeaderData(StudentClass_deliveryMode, Qt::Horizontal, tr("Delivery Mode"));
+
 	studentView->setModel(classModel);
 	studentView->setSelectionMode(QAbstractItemView::SingleSelection);
 	studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -90,15 +93,19 @@ void Student::setClasses()
 
 void Student::setGrades()
 {
-	enrollModel = new QSqlRelationalTableModel;
-	enrollModel->setTable("enroll");
-	enrollModel->setFilter("studentId = " + studentId);
-	enrollModel->select();
+	gradeModel = new QSqlRelationalTableModel;
+	gradeModel->setTable("classgrade");
+	gradeModel->setFilter("studentId = " + studentId);
+	gradeModel->select();
 
-	enrollModel->setHeaderData(Enroll_crn, Qt::Horizontal, tr("Course Number"));
-	enrollModel->setHeaderData(Enroll_assignment, Qt::Horizontal, tr("Assignment"));
-	enrollModel->setHeaderData(Enroll_grade, Qt::Horizontal, tr("Grade"));
-	studentView->setModel(enrollModel);
+	gradeModel->setHeaderData(ClassGrade_studentId, Qt::Horizontal, tr("Student Id"));
+	gradeModel->setHeaderData(ClassGrade_crn, Qt::Horizontal, tr("Course Reference Number"));
+	gradeModel->setHeaderData(ClassGrade_subj, Qt::Horizontal, tr("Subject"));
+	gradeModel->setHeaderData(ClassGrade_crseNo, Qt::Horizontal, tr("Course Number"));
+	gradeModel->setHeaderData(ClassGrade_title, Qt::Horizontal, tr("Title"));
+	gradeModel->setHeaderData(ClassGrade_grade, Qt::Horizontal, tr("Grade"));
+	gradeModel->setHeaderData(ClassGrade_creditHrs, Qt::Horizontal, tr("Credit Hours"));
+	studentView->setModel(gradeModel);
 	studentView->setSelectionMode(QAbstractItemView::SingleSelection);
 	studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	studentView->resizeColumnsToContents();
@@ -111,3 +118,24 @@ void Student::setGrades()
 	show();
 }
 
+void Student::setGPA()
+{
+	gpaModel = new QSqlRelationalTableModel;
+	gpaModel->setTable("gpa");
+	gpaModel->setFilter("studentId = " + studentId);
+	gpaModel->select();
+
+	gpaModel->setHeaderData(GPA_studentId, Qt::Horizontal, tr("Student Id"));
+	gpaModel->setHeaderData(GPA_gpa, Qt::Horizontal, tr("GPA"));
+	studentView->setModel(gpaModel);
+	studentView->setSelectionMode(QAbstractItemView::SingleSelection);
+	studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
+	studentView->resizeColumnsToContents();
+	studentView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+	studentHeader = studentView->horizontalHeader();
+	studentHeader->setStretchLastSection(true);
+	studentHeader->setSectionResizeMode(QHeaderView::Stretch);
+
+	show();
+}

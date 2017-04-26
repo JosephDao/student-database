@@ -19,6 +19,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,9 +29,12 @@ class Ui_StudentMainWindow
 public:
     QWidget *centralwidget;
     QTableView *studentView;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
     QPushButton *refreshButton;
     QPushButton *classButton;
     QPushButton *gradeButton;
+    QPushButton *gpaButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -48,17 +52,24 @@ public:
         studentView = new QTableView(centralwidget);
         studentView->setObjectName(QStringLiteral("studentView"));
         studentView->setGeometry(QRect(400, 170, 1281, 731));
-        refreshButton = new QPushButton(centralwidget);
+        widget = new QWidget(centralwidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(51, 192, 303, 227));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        refreshButton = new QPushButton(widget);
         refreshButton->setObjectName(QStringLiteral("refreshButton"));
-        refreshButton->setGeometry(QRect(50, 191, 301, 51));
         refreshButton->setMinimumSize(QSize(301, 51));
         QFont font;
         font.setFamily(QStringLiteral("Arial"));
         font.setPointSize(12);
         refreshButton->setFont(font);
-        classButton = new QPushButton(centralwidget);
+
+        verticalLayout->addWidget(refreshButton);
+
+        classButton = new QPushButton(widget);
         classButton->setObjectName(QStringLiteral("classButton"));
-        classButton->setGeometry(QRect(50, 249, 301, 51));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -66,13 +77,27 @@ public:
         classButton->setSizePolicy(sizePolicy);
         classButton->setMinimumSize(QSize(301, 51));
         classButton->setFont(font);
-        gradeButton = new QPushButton(centralwidget);
+
+        verticalLayout->addWidget(classButton);
+
+        gradeButton = new QPushButton(widget);
         gradeButton->setObjectName(QStringLiteral("gradeButton"));
-        gradeButton->setGeometry(QRect(50, 307, 301, 51));
         sizePolicy.setHeightForWidth(gradeButton->sizePolicy().hasHeightForWidth());
         gradeButton->setSizePolicy(sizePolicy);
         gradeButton->setMinimumSize(QSize(301, 51));
         gradeButton->setFont(font);
+
+        verticalLayout->addWidget(gradeButton);
+
+        gpaButton = new QPushButton(widget);
+        gpaButton->setObjectName(QStringLiteral("gpaButton"));
+        sizePolicy.setHeightForWidth(gpaButton->sizePolicy().hasHeightForWidth());
+        gpaButton->setSizePolicy(sizePolicy);
+        gpaButton->setMinimumSize(QSize(301, 51));
+        gpaButton->setFont(font);
+
+        verticalLayout->addWidget(gpaButton);
+
         StudentMainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(StudentMainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -86,6 +111,7 @@ public:
 
         classButton->setDefault(true);
         gradeButton->setDefault(true);
+        gpaButton->setDefault(true);
 
 
         QMetaObject::connectSlotsByName(StudentMainWindow);
@@ -97,6 +123,7 @@ public:
         refreshButton->setText(QApplication::translate("StudentMainWindow", "Student", Q_NULLPTR));
         classButton->setText(QApplication::translate("StudentMainWindow", "Class", Q_NULLPTR));
         gradeButton->setText(QApplication::translate("StudentMainWindow", "Grades", Q_NULLPTR));
+        gpaButton->setText(QApplication::translate("StudentMainWindow", "GPA", Q_NULLPTR));
     } // retranslateUi
 
 };

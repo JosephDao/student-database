@@ -15,8 +15,8 @@ public:
 	void setStudentForm(int);
 
 private slots:
-	void addEmployee();
-	void deleteEmployee();
+	void addStudent();
+	void deleteStudent();
 
 private:
 	enum studentAttributes

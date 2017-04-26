@@ -11,12 +11,13 @@ StudentForm::StudentForm(QWidget *parent) : QDialog(parent)
 	setupUi(this);
 }
 
-void StudentForm::addEmployee()
+void StudentForm::addStudent()
 {
 	studentRow = studentMapper->currentIndex();
 	studentMapper->submit();
 	studentModel->insertRow(studentRow);
 	studentMapper->setCurrentIndex(studentRow);
+
 	studentIdLineEdit->clear();
 	fNameLineEdit->clear();
 	lNameLineEdit->clear();
@@ -27,7 +28,7 @@ void StudentForm::addEmployee()
 	studentIdLineEdit->setFocus();
 }
 
-void StudentForm::deleteEmployee()
+void StudentForm::deleteStudent()
 {
 	studentRow = studentMapper->currentIndex();
 	studentModel->removeRow(studentRow);
@@ -57,8 +58,8 @@ void StudentForm::setStudentForm(int id)
 	connect(previousButton, SIGNAL(clicked()), studentMapper, SLOT(toPrevious()));
 	connect(nextButton, SIGNAL(clicked()), studentMapper, SLOT(toNext()));
 	connect(lastButton, SIGNAL(clicked()), studentMapper, SLOT(toLast()));
-	connect(addButton, SIGNAL(clicked()), this, SLOT(addEmployee()));
-	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteEmployee()));
+	connect(addButton, SIGNAL(clicked()), this, SLOT(addStudent()));
+	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteStudent()));
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
 
 	if (id == 0)

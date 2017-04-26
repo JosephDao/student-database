@@ -38,12 +38,18 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QLabel *courseIdLabel;
     QLineEdit *courseIdLineEdit;
-    QSpacerItem *horizontalSpacer_4;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *titleLabel;
-    QLineEdit *titleLineEdit;
+    QSpacerItem *horizontalSpacer_2;
+    QHBoxLayout *horizontalLayout_5;
     QLabel *subjectLabel;
     QLineEdit *subjectLineEdit;
+    QSpacerItem *horizontalSpacer_3;
+    QHBoxLayout *horizontalLayout_6;
+    QLabel *titleLabel;
+    QLineEdit *titleLineEdit;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *creditHrsLabel;
+    QLineEdit *creditHrsLineEdit;
+    QSpacerItem *horizontalSpacer_4;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *addButton;
     QPushButton *deleteButton;
@@ -54,7 +60,7 @@ public:
     {
         if (courseFormDialog->objectName().isEmpty())
             courseFormDialog->setObjectName(QStringLiteral("courseFormDialog"));
-        courseFormDialog->resize(525, 171);
+        courseFormDialog->resize(525, 276);
         courseFormDialog->setStyleSheet(QLatin1String("QDialog {background-color: rgb(235, 239, 240);}\n"
 "QPushButton {background-color: rgb(0, 0, 127); color: white; border-width: 2 px; border-radius: 10 px; }\n"
 "QLabel {color: black;}\n"
@@ -132,48 +138,33 @@ public:
 
         courseIdLineEdit = new QLineEdit(courseFormDialog);
         courseIdLineEdit->setObjectName(QStringLiteral("courseIdLineEdit"));
-        sizePolicy.setHeightForWidth(courseIdLineEdit->sizePolicy().hasHeightForWidth());
-        courseIdLineEdit->setSizePolicy(sizePolicy);
-        courseIdLineEdit->setMinimumSize(QSize(188, 29));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(courseIdLineEdit->sizePolicy().hasHeightForWidth());
+        courseIdLineEdit->setSizePolicy(sizePolicy1);
+        courseIdLineEdit->setMinimumSize(QSize(131, 29));
         courseIdLineEdit->setFont(font);
         courseIdLineEdit->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_2->addWidget(courseIdLineEdit);
 
-        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_2->addItem(horizontalSpacer_4);
+        horizontalLayout_2->addItem(horizontalSpacer_2);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        titleLabel = new QLabel(courseFormDialog);
-        titleLabel->setObjectName(QStringLiteral("titleLabel"));
-        titleLabel->setMaximumSize(QSize(102, 41));
-        titleLabel->setFont(font);
-        titleLabel->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_3->addWidget(titleLabel);
-
-        titleLineEdit = new QLineEdit(courseFormDialog);
-        titleLineEdit->setObjectName(QStringLiteral("titleLineEdit"));
-        sizePolicy.setHeightForWidth(titleLineEdit->sizePolicy().hasHeightForWidth());
-        titleLineEdit->setSizePolicy(sizePolicy);
-        titleLineEdit->setMinimumSize(QSize(188, 29));
-        titleLineEdit->setFont(font);
-        titleLineEdit->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_3->addWidget(titleLineEdit);
-
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         subjectLabel = new QLabel(courseFormDialog);
         subjectLabel->setObjectName(QStringLiteral("subjectLabel"));
         subjectLabel->setMaximumSize(QSize(101, 41));
         subjectLabel->setFont(font);
         subjectLabel->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_3->addWidget(subjectLabel);
+        horizontalLayout_5->addWidget(subjectLabel);
 
         subjectLineEdit = new QLineEdit(courseFormDialog);
         subjectLineEdit->setObjectName(QStringLiteral("subjectLineEdit"));
@@ -183,7 +174,61 @@ public:
         subjectLineEdit->setFont(font);
         subjectLineEdit->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_3->addWidget(subjectLineEdit);
+        horizontalLayout_5->addWidget(subjectLineEdit);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_3);
+
+
+        verticalLayout->addLayout(horizontalLayout_5);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        titleLabel = new QLabel(courseFormDialog);
+        titleLabel->setObjectName(QStringLiteral("titleLabel"));
+        titleLabel->setMaximumSize(QSize(102, 41));
+        titleLabel->setFont(font);
+        titleLabel->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_6->addWidget(titleLabel);
+
+        titleLineEdit = new QLineEdit(courseFormDialog);
+        titleLineEdit->setObjectName(QStringLiteral("titleLineEdit"));
+        sizePolicy1.setHeightForWidth(titleLineEdit->sizePolicy().hasHeightForWidth());
+        titleLineEdit->setSizePolicy(sizePolicy1);
+        titleLineEdit->setMinimumSize(QSize(231, 29));
+        titleLineEdit->setFont(font);
+        titleLineEdit->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_6->addWidget(titleLineEdit);
+
+
+        verticalLayout->addLayout(horizontalLayout_6);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        creditHrsLabel = new QLabel(courseFormDialog);
+        creditHrsLabel->setObjectName(QStringLiteral("creditHrsLabel"));
+        creditHrsLabel->setMaximumSize(QSize(111, 21));
+        creditHrsLabel->setFont(font);
+        creditHrsLabel->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_3->addWidget(creditHrsLabel);
+
+        creditHrsLineEdit = new QLineEdit(courseFormDialog);
+        creditHrsLineEdit->setObjectName(QStringLiteral("creditHrsLineEdit"));
+        sizePolicy1.setHeightForWidth(creditHrsLineEdit->sizePolicy().hasHeightForWidth());
+        creditHrsLineEdit->setSizePolicy(sizePolicy1);
+        creditHrsLineEdit->setMinimumSize(QSize(81, 29));
+        creditHrsLineEdit->setFont(font);
+        creditHrsLineEdit->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_3->addWidget(creditHrsLineEdit);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_4);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
@@ -228,9 +273,8 @@ public:
         verticalLayout->addLayout(horizontalLayout_4);
 
 #ifndef QT_NO_SHORTCUT
-        courseIdLabel->setBuddy(courseIdLineEdit);
-        titleLabel->setBuddy(titleLineEdit);
         subjectLabel->setBuddy(subjectLineEdit);
+        titleLabel->setBuddy(titleLineEdit);
 #endif // QT_NO_SHORTCUT
 
         retranslateUi(courseFormDialog);
@@ -255,11 +299,11 @@ public:
         nextButton->setText(QApplication::translate("courseFormDialog", "Next >", Q_NULLPTR));
         lastButton->setText(QApplication::translate("courseFormDialog", "Last >>", Q_NULLPTR));
         courseIdLabel->setText(QApplication::translate("courseFormDialog", "Course Id:", Q_NULLPTR));
-        courseIdLineEdit->setPlaceholderText(QString());
-        titleLabel->setText(QApplication::translate("courseFormDialog", "Title:", Q_NULLPTR));
-        titleLineEdit->setPlaceholderText(QString());
         subjectLabel->setText(QApplication::translate("courseFormDialog", "Subject:", Q_NULLPTR));
         subjectLineEdit->setPlaceholderText(QString());
+        titleLabel->setText(QApplication::translate("courseFormDialog", "Title:", Q_NULLPTR));
+        titleLineEdit->setPlaceholderText(QString());
+        creditHrsLabel->setText(QApplication::translate("courseFormDialog", "Credit Hours:", Q_NULLPTR));
         addButton->setText(QApplication::translate("courseFormDialog", "Add", Q_NULLPTR));
         deleteButton->setText(QApplication::translate("courseFormDialog", "Delete", Q_NULLPTR));
         closeButton->setText(QApplication::translate("courseFormDialog", "Close", Q_NULLPTR));

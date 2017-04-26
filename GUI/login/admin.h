@@ -29,7 +29,8 @@ private:
 	{
 		Course_subj = 0,
 		Course_no = 1,
-		Course_title = 2
+		Course_title = 2,
+		Course_creditHrs = 3
 	};
 
 	enum Class
@@ -52,6 +53,12 @@ private:
 		Enroll_grade = 3
 	};
 
+	enum GPA
+	{
+		GPA_studentId,
+		GPA_gpa
+	};
+
 	QHeaderView *studentHeader;
 	QHeaderView *courseHeader;
 	QHeaderView *classHeader;
@@ -60,6 +67,7 @@ private:
 	QSqlRelationalTableModel *courseModel;
 	QSqlRelationalTableModel *classModel;
 	QSqlRelationalTableModel *enrollModel;
+	QSqlRelationalTableModel *gpaModel;
 	int id;
 
 private slots:
@@ -67,10 +75,12 @@ private slots:
 	void setCourses();
 	void setClasses();
 	void setGrades();
+	void setGPA();
 	void displayGradeForm();
 	void displayStudentForm();
 	void displayCourseForm();
 	void displayClassForm();
+	void displayError();
 };
 
 #endif

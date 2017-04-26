@@ -21,9 +21,10 @@ private slots:
 private:
 	enum courseAttributes
 	{
-		Course_id = 0,
-		Course_title = 1,
-		Course_subj = 2
+		Course_subj = 0,
+		Course_id = 1,
+		Course_title = 2,
+		Course_creditHrs = 3
 	};
 
 	int courseRow;

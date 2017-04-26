@@ -18,12 +18,14 @@ void ClassForm::addClass()
 	classModel->insertRow(classRow);
 	classMapper->setCurrentIndex(classRow);
 
+	subjLineEdit->clear();
+	crseNoLineEdit->clear();
+	titleLineEdit->clear();
 	crnLineEdit->clear();
 	startTimeLineEdit->clear();
 	endTimeLineEdit->clear();
 	daysLineEdit->clear();
 	deliveryModeLineEdit->clear();
-	passwordLineEdit->clear();
 
 	crnLineEdit->setFocus();
 }
@@ -47,11 +49,13 @@ void ClassForm::setClassForm(int id)
 	classMapper->setModel(classModel);
 	classMapper->setItemDelegate(new QSqlRelationalDelegate(this));
 	classMapper->addMapping(crnLineEdit, Class_crn);
+	classMapper->addMapping(subjLineEdit, Class_subj);
+	classMapper->addMapping(crseNoLineEdit, Class_crseNo);
+	classMapper->addMapping(titleLineEdit, Class_title);
 	classMapper->addMapping(startTimeLineEdit, Class_startTime);
 	classMapper->addMapping(endTimeLineEdit, Class_endTime);
 	classMapper->addMapping(daysLineEdit, Class_days);
 	classMapper->addMapping(deliveryModeLineEdit, Class_deliveryMode);
-	classMapper->addMapping(passwordLineEdit, Class_crseNo);
 
 	if (id == 0)
 		classMapper->toFirst();

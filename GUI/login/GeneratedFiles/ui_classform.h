@@ -40,19 +40,23 @@ public:
     QLineEdit *crnLineEdit;
     QSpacerItem *horizontalSpacer_4;
     QHBoxLayout *horizontalLayout_4;
+    QLabel *subjLabel;
+    QLineEdit *subjLineEdit;
+    QLabel *crseNoLabel;
+    QLineEdit *crseNoLineEdit;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *titleLabel;
+    QLineEdit *titleLineEdit;
+    QHBoxLayout *horizontalLayout_5;
     QLabel *startTimeLabel;
     QLineEdit *startTimeLineEdit;
     QLabel *endTimeLabel;
     QLineEdit *endTimeLineEdit;
-    QHBoxLayout *horizontalLayout_3;
+    QHBoxLayout *horizontalLayout_6;
     QLabel *daysLabel;
     QLineEdit *daysLineEdit;
     QLabel *deliveryModeLabel;
     QLineEdit *deliveryModeLineEdit;
-    QHBoxLayout *horizontalLayout_5;
-    QLabel *passwordLabel;
-    QLineEdit *passwordLineEdit;
-    QSpacerItem *horizontalSpacer_3;
     QHBoxLayout *horizontalLayout_7;
     QPushButton *addButton;
     QPushButton *deleteButton;
@@ -63,7 +67,7 @@ public:
     {
         if (classFormDialog->objectName().isEmpty())
             classFormDialog->setObjectName(QStringLiteral("classFormDialog"));
-        classFormDialog->resize(589, 247);
+        classFormDialog->resize(589, 313);
         classFormDialog->setStyleSheet(QLatin1String("QDialog {background-color: rgb(235, 239, 240);}\n"
 "QPushButton {background-color: rgb(0, 0, 127); color: white; border-width: 2 px; border-radius: 10 px; }\n"
 "QLabel {color: black;}\n"
@@ -146,6 +150,7 @@ public:
         crnLineEdit->setMinimumSize(QSize(188, 29));
         crnLineEdit->setFont(font);
         crnLineEdit->setAlignment(Qt::AlignCenter);
+        crnLineEdit->setReadOnly(true);
 
         horizontalLayout_2->addWidget(crnLineEdit);
 
@@ -158,112 +163,153 @@ public:
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        startTimeLabel = new QLabel(classFormDialog);
-        startTimeLabel->setObjectName(QStringLiteral("startTimeLabel"));
-        startTimeLabel->setMaximumSize(QSize(87, 21));
-        startTimeLabel->setFont(font);
-        startTimeLabel->setAlignment(Qt::AlignCenter);
+        subjLabel = new QLabel(classFormDialog);
+        subjLabel->setObjectName(QStringLiteral("subjLabel"));
+        subjLabel->setMaximumSize(QSize(87, 21));
+        subjLabel->setFont(font);
+        subjLabel->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_4->addWidget(startTimeLabel);
+        horizontalLayout_4->addWidget(subjLabel);
 
-        startTimeLineEdit = new QLineEdit(classFormDialog);
-        startTimeLineEdit->setObjectName(QStringLiteral("startTimeLineEdit"));
-        sizePolicy.setHeightForWidth(startTimeLineEdit->sizePolicy().hasHeightForWidth());
-        startTimeLineEdit->setSizePolicy(sizePolicy);
-        startTimeLineEdit->setMinimumSize(QSize(188, 29));
-        startTimeLineEdit->setFont(font);
-        startTimeLineEdit->setAlignment(Qt::AlignCenter);
+        subjLineEdit = new QLineEdit(classFormDialog);
+        subjLineEdit->setObjectName(QStringLiteral("subjLineEdit"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(subjLineEdit->sizePolicy().hasHeightForWidth());
+        subjLineEdit->setSizePolicy(sizePolicy1);
+        subjLineEdit->setMinimumSize(QSize(188, 29));
+        subjLineEdit->setFont(font);
+        subjLineEdit->setAlignment(Qt::AlignCenter);
+        subjLineEdit->setReadOnly(false);
 
-        horizontalLayout_4->addWidget(startTimeLineEdit);
+        horizontalLayout_4->addWidget(subjLineEdit);
 
-        endTimeLabel = new QLabel(classFormDialog);
-        endTimeLabel->setObjectName(QStringLiteral("endTimeLabel"));
-        endTimeLabel->setMaximumSize(QSize(81, 21));
-        endTimeLabel->setFont(font);
-        endTimeLabel->setAlignment(Qt::AlignCenter);
+        crseNoLabel = new QLabel(classFormDialog);
+        crseNoLabel->setObjectName(QStringLiteral("crseNoLabel"));
+        crseNoLabel->setMaximumSize(QSize(91, 21));
+        crseNoLabel->setFont(font);
+        crseNoLabel->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_4->addWidget(endTimeLabel);
+        horizontalLayout_4->addWidget(crseNoLabel);
 
-        endTimeLineEdit = new QLineEdit(classFormDialog);
-        endTimeLineEdit->setObjectName(QStringLiteral("endTimeLineEdit"));
-        sizePolicy.setHeightForWidth(endTimeLineEdit->sizePolicy().hasHeightForWidth());
-        endTimeLineEdit->setSizePolicy(sizePolicy);
-        endTimeLineEdit->setMinimumSize(QSize(188, 29));
-        endTimeLineEdit->setFont(font);
-        endTimeLineEdit->setAlignment(Qt::AlignCenter);
+        crseNoLineEdit = new QLineEdit(classFormDialog);
+        crseNoLineEdit->setObjectName(QStringLiteral("crseNoLineEdit"));
+        sizePolicy1.setHeightForWidth(crseNoLineEdit->sizePolicy().hasHeightForWidth());
+        crseNoLineEdit->setSizePolicy(sizePolicy1);
+        crseNoLineEdit->setMinimumSize(QSize(151, 29));
+        crseNoLineEdit->setFont(font);
+        crseNoLineEdit->setAlignment(Qt::AlignCenter);
+        crseNoLineEdit->setReadOnly(false);
 
-        horizontalLayout_4->addWidget(endTimeLineEdit);
+        horizontalLayout_4->addWidget(crseNoLineEdit);
 
 
         verticalLayout->addLayout(horizontalLayout_4);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        daysLabel = new QLabel(classFormDialog);
-        daysLabel->setObjectName(QStringLiteral("daysLabel"));
-        daysLabel->setMaximumSize(QSize(46, 29));
-        daysLabel->setFont(font);
-        daysLabel->setAlignment(Qt::AlignCenter);
+        titleLabel = new QLabel(classFormDialog);
+        titleLabel->setObjectName(QStringLiteral("titleLabel"));
+        titleLabel->setMaximumSize(QSize(46, 29));
+        titleLabel->setFont(font);
+        titleLabel->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_3->addWidget(daysLabel);
+        horizontalLayout_3->addWidget(titleLabel);
 
-        daysLineEdit = new QLineEdit(classFormDialog);
-        daysLineEdit->setObjectName(QStringLiteral("daysLineEdit"));
-        sizePolicy.setHeightForWidth(daysLineEdit->sizePolicy().hasHeightForWidth());
-        daysLineEdit->setSizePolicy(sizePolicy);
-        daysLineEdit->setMinimumSize(QSize(188, 29));
-        daysLineEdit->setFont(font);
-        daysLineEdit->setAlignment(Qt::AlignCenter);
+        titleLineEdit = new QLineEdit(classFormDialog);
+        titleLineEdit->setObjectName(QStringLiteral("titleLineEdit"));
+        sizePolicy1.setHeightForWidth(titleLineEdit->sizePolicy().hasHeightForWidth());
+        titleLineEdit->setSizePolicy(sizePolicy1);
+        titleLineEdit->setMinimumSize(QSize(371, 29));
+        titleLineEdit->setFont(font);
+        titleLineEdit->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_3->addWidget(daysLineEdit);
-
-        deliveryModeLabel = new QLabel(classFormDialog);
-        deliveryModeLabel->setObjectName(QStringLiteral("deliveryModeLabel"));
-        deliveryModeLabel->setMaximumSize(QSize(121, 21));
-        deliveryModeLabel->setFont(font);
-        deliveryModeLabel->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_3->addWidget(deliveryModeLabel);
-
-        deliveryModeLineEdit = new QLineEdit(classFormDialog);
-        deliveryModeLineEdit->setObjectName(QStringLiteral("deliveryModeLineEdit"));
-        sizePolicy.setHeightForWidth(deliveryModeLineEdit->sizePolicy().hasHeightForWidth());
-        deliveryModeLineEdit->setSizePolicy(sizePolicy);
-        deliveryModeLineEdit->setMaximumSize(QSize(188, 29));
-        deliveryModeLineEdit->setFont(font);
-        deliveryModeLineEdit->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_3->addWidget(deliveryModeLineEdit);
+        horizontalLayout_3->addWidget(titleLineEdit);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        passwordLabel = new QLabel(classFormDialog);
-        passwordLabel->setObjectName(QStringLiteral("passwordLabel"));
-        passwordLabel->setMaximumSize(QSize(131, 29));
-        passwordLabel->setFont(font);
-        passwordLabel->setAlignment(Qt::AlignCenter);
+        startTimeLabel = new QLabel(classFormDialog);
+        startTimeLabel->setObjectName(QStringLiteral("startTimeLabel"));
+        startTimeLabel->setMaximumSize(QSize(121, 21));
+        startTimeLabel->setFont(font);
+        startTimeLabel->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_5->addWidget(passwordLabel);
+        horizontalLayout_5->addWidget(startTimeLabel);
 
-        passwordLineEdit = new QLineEdit(classFormDialog);
-        passwordLineEdit->setObjectName(QStringLiteral("passwordLineEdit"));
-        sizePolicy.setHeightForWidth(passwordLineEdit->sizePolicy().hasHeightForWidth());
-        passwordLineEdit->setSizePolicy(sizePolicy);
-        passwordLineEdit->setMinimumSize(QSize(188, 29));
-        passwordLineEdit->setFont(font);
-        passwordLineEdit->setAlignment(Qt::AlignCenter);
+        startTimeLineEdit = new QLineEdit(classFormDialog);
+        startTimeLineEdit->setObjectName(QStringLiteral("startTimeLineEdit"));
+        sizePolicy1.setHeightForWidth(startTimeLineEdit->sizePolicy().hasHeightForWidth());
+        startTimeLineEdit->setSizePolicy(sizePolicy1);
+        startTimeLineEdit->setMinimumSize(QSize(151, 29));
+        startTimeLineEdit->setFont(font);
+        startTimeLineEdit->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_5->addWidget(passwordLineEdit);
+        horizontalLayout_5->addWidget(startTimeLineEdit);
 
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
+        endTimeLabel = new QLabel(classFormDialog);
+        endTimeLabel->setObjectName(QStringLiteral("endTimeLabel"));
+        endTimeLabel->setMaximumSize(QSize(131, 29));
+        endTimeLabel->setFont(font);
+        endTimeLabel->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_5->addItem(horizontalSpacer_3);
+        horizontalLayout_5->addWidget(endTimeLabel);
+
+        endTimeLineEdit = new QLineEdit(classFormDialog);
+        endTimeLineEdit->setObjectName(QStringLiteral("endTimeLineEdit"));
+        sizePolicy1.setHeightForWidth(endTimeLineEdit->sizePolicy().hasHeightForWidth());
+        endTimeLineEdit->setSizePolicy(sizePolicy1);
+        endTimeLineEdit->setMinimumSize(QSize(151, 29));
+        endTimeLineEdit->setMaximumSize(QSize(188, 29));
+        endTimeLineEdit->setFont(font);
+        endTimeLineEdit->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_5->addWidget(endTimeLineEdit);
 
 
         verticalLayout->addLayout(horizontalLayout_5);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
+        daysLabel = new QLabel(classFormDialog);
+        daysLabel->setObjectName(QStringLiteral("daysLabel"));
+        daysLabel->setMaximumSize(QSize(46, 29));
+        daysLabel->setFont(font);
+        daysLabel->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_6->addWidget(daysLabel);
+
+        daysLineEdit = new QLineEdit(classFormDialog);
+        daysLineEdit->setObjectName(QStringLiteral("daysLineEdit"));
+        daysLineEdit->setMinimumSize(QSize(113, 31));
+        daysLineEdit->setFont(font);
+        daysLineEdit->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_6->addWidget(daysLineEdit);
+
+        deliveryModeLabel = new QLabel(classFormDialog);
+        deliveryModeLabel->setObjectName(QStringLiteral("deliveryModeLabel"));
+        deliveryModeLabel->setMinimumSize(QSize(121, 21));
+        deliveryModeLabel->setMaximumSize(QSize(121, 31));
+        deliveryModeLabel->setFont(font);
+        deliveryModeLabel->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_6->addWidget(deliveryModeLabel);
+
+        deliveryModeLineEdit = new QLineEdit(classFormDialog);
+        deliveryModeLineEdit->setObjectName(QStringLiteral("deliveryModeLineEdit"));
+        deliveryModeLineEdit->setMinimumSize(QSize(113, 31));
+        deliveryModeLineEdit->setMaximumSize(QSize(113, 31));
+        deliveryModeLineEdit->setFont(font);
+        deliveryModeLineEdit->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_6->addWidget(deliveryModeLineEdit);
+
+
+        verticalLayout->addLayout(horizontalLayout_6);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
@@ -306,11 +352,13 @@ public:
 
 #ifndef QT_NO_SHORTCUT
         crnLabel->setBuddy(crnLineEdit);
+        subjLabel->setBuddy(subjLineEdit);
+        crseNoLabel->setBuddy(crseNoLineEdit);
+        titleLabel->setBuddy(titleLineEdit);
         startTimeLabel->setBuddy(startTimeLineEdit);
         endTimeLabel->setBuddy(endTimeLineEdit);
-        daysLabel->setBuddy(daysLineEdit);
+        daysLabel->setBuddy(titleLineEdit);
         deliveryModeLabel->setBuddy(deliveryModeLineEdit);
-        passwordLabel->setBuddy(passwordLineEdit);
 #endif // QT_NO_SHORTCUT
 
         retranslateUi(classFormDialog);
@@ -336,16 +384,18 @@ public:
         lastButton->setText(QApplication::translate("classFormDialog", "Last >>", Q_NULLPTR));
         crnLabel->setText(QApplication::translate("classFormDialog", "CRN:", Q_NULLPTR));
         crnLineEdit->setPlaceholderText(QString());
+        subjLabel->setText(QApplication::translate("classFormDialog", "Subject:", Q_NULLPTR));
+        subjLineEdit->setPlaceholderText(QString());
+        crseNoLabel->setText(QApplication::translate("classFormDialog", "Course No:", Q_NULLPTR));
+        crseNoLineEdit->setPlaceholderText(QString());
+        titleLabel->setText(QApplication::translate("classFormDialog", "Title:", Q_NULLPTR));
+        titleLineEdit->setPlaceholderText(QString());
         startTimeLabel->setText(QApplication::translate("classFormDialog", "Start Time:", Q_NULLPTR));
         startTimeLineEdit->setPlaceholderText(QString());
         endTimeLabel->setText(QApplication::translate("classFormDialog", "End Time:", Q_NULLPTR));
         endTimeLineEdit->setPlaceholderText(QString());
         daysLabel->setText(QApplication::translate("classFormDialog", "Days:", Q_NULLPTR));
-        daysLineEdit->setPlaceholderText(QString());
         deliveryModeLabel->setText(QApplication::translate("classFormDialog", "Delivery Mode:", Q_NULLPTR));
-        deliveryModeLineEdit->setPlaceholderText(QString());
-        passwordLabel->setText(QApplication::translate("classFormDialog", "Course Number:", Q_NULLPTR));
-        passwordLineEdit->setPlaceholderText(QString());
         addButton->setText(QApplication::translate("classFormDialog", "Add", Q_NULLPTR));
         deleteButton->setText(QApplication::translate("classFormDialog", "Delete", Q_NULLPTR));
         closeButton->setText(QApplication::translate("classFormDialog", "Close", Q_NULLPTR));

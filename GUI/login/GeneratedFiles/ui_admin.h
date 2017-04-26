@@ -32,12 +32,13 @@ public:
     QTableView *adminView;
     QPushButton *editButton;
     QLineEdit *searchLineEdit;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *studentButton;
     QPushButton *courseButton;
     QPushButton *classButton;
     QPushButton *gradeButton;
+    QPushButton *gpaButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -74,13 +75,13 @@ public:
         font1.setPointSize(11);
         searchLineEdit->setFont(font1);
         searchLineEdit->setAlignment(Qt::AlignCenter);
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(50, 191, 303, 227));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(51, 193, 303, 285));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        studentButton = new QPushButton(widget);
+        studentButton = new QPushButton(layoutWidget);
         studentButton->setObjectName(QStringLiteral("studentButton"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -92,7 +93,7 @@ public:
 
         verticalLayout->addWidget(studentButton);
 
-        courseButton = new QPushButton(widget);
+        courseButton = new QPushButton(layoutWidget);
         courseButton->setObjectName(QStringLiteral("courseButton"));
         sizePolicy.setHeightForWidth(courseButton->sizePolicy().hasHeightForWidth());
         courseButton->setSizePolicy(sizePolicy);
@@ -101,7 +102,7 @@ public:
 
         verticalLayout->addWidget(courseButton);
 
-        classButton = new QPushButton(widget);
+        classButton = new QPushButton(layoutWidget);
         classButton->setObjectName(QStringLiteral("classButton"));
         sizePolicy.setHeightForWidth(classButton->sizePolicy().hasHeightForWidth());
         classButton->setSizePolicy(sizePolicy);
@@ -110,7 +111,7 @@ public:
 
         verticalLayout->addWidget(classButton);
 
-        gradeButton = new QPushButton(widget);
+        gradeButton = new QPushButton(layoutWidget);
         gradeButton->setObjectName(QStringLiteral("gradeButton"));
         sizePolicy.setHeightForWidth(gradeButton->sizePolicy().hasHeightForWidth());
         gradeButton->setSizePolicy(sizePolicy);
@@ -118,6 +119,15 @@ public:
         gradeButton->setFont(font);
 
         verticalLayout->addWidget(gradeButton);
+
+        gpaButton = new QPushButton(layoutWidget);
+        gpaButton->setObjectName(QStringLiteral("gpaButton"));
+        sizePolicy.setHeightForWidth(gpaButton->sizePolicy().hasHeightForWidth());
+        gpaButton->setSizePolicy(sizePolicy);
+        gpaButton->setMinimumSize(QSize(301, 51));
+        gpaButton->setFont(font);
+
+        verticalLayout->addWidget(gpaButton);
 
         AdminMainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(AdminMainWindow);
@@ -135,6 +145,7 @@ public:
         courseButton->setDefault(true);
         classButton->setDefault(true);
         gradeButton->setDefault(true);
+        gpaButton->setDefault(true);
 
 
         QMetaObject::connectSlotsByName(AdminMainWindow);
@@ -145,11 +156,12 @@ public:
         AdminMainWindow->setWindowTitle(QApplication::translate("AdminMainWindow", "MainWindow", Q_NULLPTR));
         editButton->setText(QApplication::translate("AdminMainWindow", "Edit", Q_NULLPTR));
         searchLineEdit->setText(QString());
-        searchLineEdit->setPlaceholderText(QString());
+        searchLineEdit->setPlaceholderText(QApplication::translate("AdminMainWindow", "Enter ID to search for record or click \"Edit\" to go to first record", Q_NULLPTR));
         studentButton->setText(QApplication::translate("AdminMainWindow", "Student", Q_NULLPTR));
         courseButton->setText(QApplication::translate("AdminMainWindow", "Course", Q_NULLPTR));
         classButton->setText(QApplication::translate("AdminMainWindow", "Class", Q_NULLPTR));
         gradeButton->setText(QApplication::translate("AdminMainWindow", "Grade", Q_NULLPTR));
+        gpaButton->setText(QApplication::translate("AdminMainWindow", "GPA", Q_NULLPTR));
     } // retranslateUi
 
 };

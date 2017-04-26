@@ -17,10 +17,11 @@ void CourseForm::addCourse()
 	courseModel->insertRow(courseRow);
 	courseMapper->setCurrentIndex(courseRow);
 
+	subjectLineEdit->clear();
 	courseIdLineEdit->clear();
 	titleLineEdit->clear();
-	subjectLineEdit->clear();
-	courseIdLineEdit->setFocus();
+	creditHrsLineEdit->clear();
+	subjectLineEdit->setFocus();
 }
 
 void CourseForm::deleteCourse()
@@ -41,9 +42,10 @@ void CourseForm::setCourseForm(int id)
 	courseMapper->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
 	courseMapper->setModel(courseModel);
 	courseMapper->setItemDelegate(new QSqlRelationalDelegate(this));
+	courseMapper->addMapping(subjectLineEdit, Course_subj);
 	courseMapper->addMapping(courseIdLineEdit, Course_id);
 	courseMapper->addMapping(titleLineEdit, Course_title);
-	courseMapper->addMapping(subjectLineEdit, Course_subj);
+	courseMapper->addMapping(creditHrsLineEdit, Course_creditHrs);
 
 	if (id == 0)
 		courseMapper->toFirst();

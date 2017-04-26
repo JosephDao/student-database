@@ -21,6 +21,7 @@ private slots:
 	void refresh();
 	void setGrades();
 	void setClasses();
+	void setGPA();
 
 private:
 	enum studentAttributes
@@ -34,24 +35,34 @@ private:
 		Student_password = 6
 	};
 
-	enum Class
+	enum ClassGrade
 	{
-		Class_crn = 0,
-		Class_subj = 1,
-		Class_crseNo = 2,
-		Class_title = 3,
-		Class_startTime = 4,
-		Class_endTime = 5,
-		Class_days = 6,
-		Class_deliveryMode = 7
+		ClassGrade_studentId = 0,
+		ClassGrade_crn = 1,
+		ClassGrade_subj = 2,
+		ClassGrade_crseNo = 3,
+		ClassGrade_title = 4,
+		ClassGrade_grade = 5,
+		ClassGrade_creditHrs = 6
 	};
 
-	enum Enroll
+	enum GPA
 	{
-		Enroll_studentId = 0,
-		Enroll_crn = 1,
-		Enroll_assignment = 2,
-		Enroll_grade = 3
+		GPA_studentId = 0,
+		GPA_gpa = 1
+	};
+
+	enum StudentClass
+	{
+		StudentClass_id = 0,
+		StudentClass_crn = 1,
+		StudentClass_subj = 2,
+		StudentClass_crseNo = 3,
+		StudentClass_title = 4,
+		StudentClass_startTime = 5,
+		StudentClass_endTime = 6,
+		StudentClass_days = 7,
+		StudentClass_deliveryMode = 8
 	};
 
 	QString studentId;
@@ -59,7 +70,8 @@ private:
 	QHeaderView *studentHeader;
 	QSqlRelationalTableModel *studentModel;
 	QSqlRelationalTableModel *classModel;
-	QSqlRelationalTableModel *enrollModel;
+	QSqlRelationalTableModel *gradeModel;
+	QSqlRelationalTableModel *gpaModel;
 };
 
 #endif
