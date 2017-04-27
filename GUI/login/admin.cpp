@@ -1,5 +1,8 @@
+#include <qdatawidgetmapper.h>
 #include <QMessageBox>
 #include <QSqlRelationalTableModel>
+#include <QtGui>
+#include <QCompleter>
 
 #include "admin.h"
 #include "student.h"
@@ -7,10 +10,12 @@
 #include "courseform.h"
 #include "classform.h"
 #include "gradeform.h"
+#include "finddialog.h"
 
 Admin::Admin(QWidget *parent) : QMainWindow(parent)
 {
 	setupUi(this);
+
 	connect(studentButton, SIGNAL(clicked()), this, SLOT(setStudents()));
 	connect(courseButton, SIGNAL(clicked()), this, SLOT(setCourses()));
 	connect(classButton, SIGNAL(clicked()), this, SLOT(setClasses()));
@@ -41,6 +46,10 @@ void Admin::setStudents()
 	studentModel->setHeaderData(Student_password, Qt::Horizontal, tr("Password"));
 	studentModel->select();
 
+	QCompleter *completer = new QCompleter(studentModel, this);
+	searchLineEdit->setCompleter(completer);
+	completer->setCompletionColumn(Student_id);
+
 	adminView->setModel(studentModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
 	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -68,11 +77,18 @@ void Admin::setCourses()
 	courseModel->setHeaderData(Course_creditHrs, Qt::Horizontal, tr("Credit Hours"));
 	courseModel->select();
 
+	QCompleter *completer = new QCompleter(courseModel, this);
+	searchLineEdit->setCompleter(completer);
+	completer->setCompletionColumn(Course_title);
+	completer->setCaseSensitivity(Qt::CaseInsensitive);
+
 	adminView->setModel(courseModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
 	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
 	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+
 
 	courseHeader = adminView->horizontalHeader();
 	courseHeader->setStretchLastSection(true);
@@ -105,6 +121,11 @@ void Admin::setClasses()
 	adminView->resizeColumnsToContents();
 	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+	QCompleter *completer = new QCompleter(classModel, this);
+	searchLineEdit->setCompleter(completer);
+	completer->setCompletionColumn(Class_crn);
+	completer->setCaseSensitivity(Qt::CaseInsensitive);
+
 	classHeader = adminView->horizontalHeader();
 	classHeader->setStretchLastSection(true);
 	classHeader->setSectionResizeMode(QHeaderView::Stretch);
@@ -121,8 +142,8 @@ void Admin::setGrades()
 
 	enrollModel = new QSqlRelationalTableModel;
 	enrollModel->setTable("enroll");
-	enrollModel->setHeaderData(Enroll_studentId, Qt::Horizontal, tr("Student Id"));
-	enrollModel->setHeaderData(Enroll_crn, Qt::Horizontal, tr("Course Number"));
+	enrollModel->setHeaderData(Enroll_studentId, Qt::Horizontal, tr("Class Id"));
+	enrollModel->setHeaderData(Enroll_crn, Qt::Horizontal, tr("Student Number"));
 	enrollModel->setHeaderData(Enroll_assignment, Qt::Horizontal, tr("Assignment"));
 	enrollModel->setHeaderData(Enroll_grade, Qt::Horizontal, tr("Grade"));
 	enrollModel->select();
@@ -132,6 +153,11 @@ void Admin::setGrades()
 	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
 	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+	QCompleter *completer = new QCompleter(enrollModel, this);
+	searchLineEdit->setCompleter(completer);
+	completer->setCompletionColumn(Course_subj);
+	completer->setCaseSensitivity(Qt::CaseInsensitive);
 
 	enrollHeader = adminView->horizontalHeader();
 	enrollHeader->setStretchLastSection(true);

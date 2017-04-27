@@ -34,6 +34,8 @@ private:
 private slots:
 	void addClass();
 	void deleteClass();
+	void editClass();
+
 };
 
 #endif

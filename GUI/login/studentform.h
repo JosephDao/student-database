@@ -17,6 +17,7 @@ public:
 private slots:
 	void addStudent();
 	void deleteStudent();
+	void editStudent();
 
 private:
 	enum studentAttributes

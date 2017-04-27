@@ -30,6 +30,12 @@ void ClassForm::addClass()
 	crnLineEdit->setFocus();
 }
 
+void ClassForm::editClass()
+{
+	classRow = classMapper->currentIndex();
+	classMapper->submit();
+}
+
 void ClassForm::deleteClass()
 {
 	classRow = classMapper->currentIndex();
@@ -78,6 +84,7 @@ void ClassForm::setClassForm(int id)
 	connect(lastButton, SIGNAL(clicked()), classMapper, SLOT(toLast()));
 	connect(addButton, SIGNAL(clicked()), this, SLOT(addClass()));
 	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteClass()));
+	connect(editButton, SIGNAL(clicked()), this, SLOT(editClass()));
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
 
 	exec();

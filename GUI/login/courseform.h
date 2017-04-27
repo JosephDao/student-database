@@ -17,6 +17,7 @@ public:
 private slots:
 	void addCourse();
 	void deleteCourse();
+	void editCourse();
 
 private:
 	enum courseAttributes

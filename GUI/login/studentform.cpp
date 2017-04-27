@@ -28,6 +28,12 @@ void StudentForm::addStudent()
 	studentIdLineEdit->setFocus();
 }
 
+void StudentForm::editStudent()
+{
+	studentRow = studentMapper->currentIndex();
+	studentMapper->submit();
+}
+
 void StudentForm::deleteStudent()
 {
 	studentRow = studentMapper->currentIndex();
@@ -59,6 +65,7 @@ void StudentForm::setStudentForm(int id)
 	connect(nextButton, SIGNAL(clicked()), studentMapper, SLOT(toNext()));
 	connect(lastButton, SIGNAL(clicked()), studentMapper, SLOT(toLast()));
 	connect(addButton, SIGNAL(clicked()), this, SLOT(addStudent()));
+	connect(editButton, SIGNAL(clicked()), this, SLOT(editStudent()));
 	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteStudent()));
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
 

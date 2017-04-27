@@ -52,13 +52,11 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QLabel *emailLabel;
     QLineEdit *emailLineEdit;
-    QSpacerItem *horizontalSpacer_2;
-    QHBoxLayout *horizontalLayout_6;
     QLabel *passwordLabel;
     QLineEdit *passwordLineEdit;
-    QSpacerItem *horizontalSpacer_3;
     QHBoxLayout *horizontalLayout_7;
     QPushButton *addButton;
+    QPushButton *editButton;
     QPushButton *deleteButton;
     QSpacerItem *horizontalSpacer;
     QPushButton *closeButton;
@@ -262,22 +260,13 @@ public:
 
         horizontalLayout_5->addWidget(emailLineEdit);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-
-        horizontalLayout_5->addItem(horizontalSpacer_2);
-
-
-        verticalLayout->addLayout(horizontalLayout_5);
-
-        horizontalLayout_6 = new QHBoxLayout();
-        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
         passwordLabel = new QLabel(studentFormDialog);
         passwordLabel->setObjectName(QStringLiteral("passwordLabel"));
         passwordLabel->setMaximumSize(QSize(94, 41));
         passwordLabel->setFont(font);
         passwordLabel->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_6->addWidget(passwordLabel);
+        horizontalLayout_5->addWidget(passwordLabel);
 
         passwordLineEdit = new QLineEdit(studentFormDialog);
         passwordLineEdit->setObjectName(QStringLiteral("passwordLineEdit"));
@@ -287,14 +276,10 @@ public:
         passwordLineEdit->setFont(font);
         passwordLineEdit->setAlignment(Qt::AlignCenter);
 
-        horizontalLayout_6->addWidget(passwordLineEdit);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::MinimumExpanding, QSizePolicy::Minimum);
-
-        horizontalLayout_6->addItem(horizontalSpacer_3);
+        horizontalLayout_5->addWidget(passwordLineEdit);
 
 
-        verticalLayout->addLayout(horizontalLayout_6);
+        verticalLayout->addLayout(horizontalLayout_5);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
@@ -307,6 +292,13 @@ public:
         addButton->setAutoDefault(false);
 
         horizontalLayout_7->addWidget(addButton);
+
+        editButton = new QPushButton(studentFormDialog);
+        editButton->setObjectName(QStringLiteral("editButton"));
+        editButton->setMinimumSize(QSize(40, 31));
+        editButton->setFont(font);
+
+        horizontalLayout_7->addWidget(editButton);
 
         deleteButton = new QPushButton(studentFormDialog);
         deleteButton->setObjectName(QStringLiteral("deleteButton"));
@@ -382,6 +374,7 @@ public:
         passwordLabel->setText(QApplication::translate("studentFormDialog", "Password:", Q_NULLPTR));
         passwordLineEdit->setPlaceholderText(QString());
         addButton->setText(QApplication::translate("studentFormDialog", "Add", Q_NULLPTR));
+        editButton->setText(QApplication::translate("studentFormDialog", "Edit", Q_NULLPTR));
         deleteButton->setText(QApplication::translate("studentFormDialog", "Delete", Q_NULLPTR));
         closeButton->setText(QApplication::translate("studentFormDialog", "Close", Q_NULLPTR));
     } // retranslateUi

@@ -24,6 +24,12 @@ void GradeForm::addGrade()
 	studentIdLineEdit->setFocus();
 }
 
+void GradeForm::editGrade()
+{
+	gradeRow = gradeMapper->currentIndex();
+	gradeMapper->submit();
+}
+
 void GradeForm::deleteGrade()
 {
 	gradeRow = gradeMapper->currentIndex();
@@ -52,6 +58,7 @@ void GradeForm::setGradeForm(int id)
 	connect(nextButton, SIGNAL(clicked()), gradeMapper, SLOT(toNext()));
 	connect(lastButton, SIGNAL(clicked()), gradeMapper, SLOT(toLast()));
 	connect(addButton, SIGNAL(clicked()), this, SLOT(addGrade()));
+	connect(editButton, SIGNAL(clicked()), this, SLOT(editGrade()));
 	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteGrade()));
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
 

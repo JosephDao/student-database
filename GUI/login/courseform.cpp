@@ -24,6 +24,12 @@ void CourseForm::addCourse()
 	subjectLineEdit->setFocus();
 }
 
+void CourseForm::editCourse()
+{
+	courseRow = courseMapper->currentIndex();
+	courseMapper->submit();
+}
+
 void CourseForm::deleteCourse()
 {
 	courseRow = courseMapper->currentIndex();
@@ -67,6 +73,7 @@ void CourseForm::setCourseForm(int id)
 	connect(nextButton, SIGNAL(clicked()), courseMapper, SLOT(toNext()));
 	connect(lastButton, SIGNAL(clicked()), courseMapper, SLOT(toLast()));
 	connect(addButton, SIGNAL(clicked()), this, SLOT(addCourse()));
+	connect(editButton, SIGNAL(clicked()), this, SLOT(editCourse()));
 	connect(deleteButton, SIGNAL(clicked()), this, SLOT(deleteCourse()));
 	connect(closeButton, SIGNAL(clicked()), this, SLOT(accept()));
 

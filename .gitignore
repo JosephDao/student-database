@@ -240,3 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/GUI/login/finddialog.qrc
+/GUI/login/finddialog.h
+/GUI/login/finddialog.ui

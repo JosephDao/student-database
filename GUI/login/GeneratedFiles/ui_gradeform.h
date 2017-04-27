@@ -47,6 +47,7 @@ public:
     QLineEdit *gradeLineEdit;
     QHBoxLayout *horizontalLayout_7;
     QPushButton *addButton;
+    QPushButton *editButton;
     QPushButton *deleteButton;
     QSpacerItem *horizontalSpacer;
     QPushButton *closeButton;
@@ -225,6 +226,13 @@ public:
 
         horizontalLayout_7->addWidget(addButton);
 
+        editButton = new QPushButton(gradeFormDialog);
+        editButton->setObjectName(QStringLiteral("editButton"));
+        editButton->setMinimumSize(QSize(40, 31));
+        editButton->setFont(font);
+
+        horizontalLayout_7->addWidget(editButton);
+
         deleteButton = new QPushButton(gradeFormDialog);
         deleteButton->setObjectName(QStringLiteral("deleteButton"));
         sizePolicy.setHeightForWidth(deleteButton->sizePolicy().hasHeightForWidth());
@@ -291,6 +299,7 @@ public:
         gradeLineEdit->setText(QString());
         gradeLineEdit->setPlaceholderText(QString());
         addButton->setText(QApplication::translate("gradeFormDialog", "Add", Q_NULLPTR));
+        editButton->setText(QApplication::translate("gradeFormDialog", "Edit", Q_NULLPTR));
         deleteButton->setText(QApplication::translate("gradeFormDialog", "Delete", Q_NULLPTR));
         closeButton->setText(QApplication::translate("gradeFormDialog", "Close", Q_NULLPTR));
     } // retranslateUi

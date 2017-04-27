@@ -59,7 +59,7 @@ public:
         adminView->setGeometry(QRect(400, 170, 1281, 731));
         editButton = new QPushButton(centralwidget);
         editButton->setObjectName(QStringLiteral("editButton"));
-        editButton->setGeometry(QRect(1380, 60, 61, 51));
+        editButton->setGeometry(QRect(1370, 60, 81, 51));
         QFont font;
         font.setFamily(QStringLiteral("Arial"));
         font.setPointSize(12);
@@ -68,7 +68,7 @@ public:
         editButton->setStyleSheet(QStringLiteral(""));
         searchLineEdit = new QLineEdit(centralwidget);
         searchLineEdit->setObjectName(QStringLiteral("searchLineEdit"));
-        searchLineEdit->setGeometry(QRect(640, 60, 741, 51));
+        searchLineEdit->setGeometry(QRect(630, 60, 741, 51));
         searchLineEdit->setMinimumSize(QSize(251, 51));
         QFont font1;
         font1.setFamily(QStringLiteral("Arial"));
@@ -154,9 +154,9 @@ public:
     void retranslateUi(QMainWindow *AdminMainWindow)
     {
         AdminMainWindow->setWindowTitle(QApplication::translate("AdminMainWindow", "MainWindow", Q_NULLPTR));
-        editButton->setText(QApplication::translate("AdminMainWindow", "Edit", Q_NULLPTR));
+        editButton->setText(QApplication::translate("AdminMainWindow", "Modify", Q_NULLPTR));
         searchLineEdit->setText(QString());
-        searchLineEdit->setPlaceholderText(QApplication::translate("AdminMainWindow", "Enter ID to search for record or click \"Edit\" to go to first record", Q_NULLPTR));
+        searchLineEdit->setPlaceholderText(QApplication::translate("AdminMainWindow", "Enter ID or leave field blank to navigate to first record", Q_NULLPTR));
         studentButton->setText(QApplication::translate("AdminMainWindow", "Student", Q_NULLPTR));
         courseButton->setText(QApplication::translate("AdminMainWindow", "Course", Q_NULLPTR));
         classButton->setText(QApplication::translate("AdminMainWindow", "Class", Q_NULLPTR));

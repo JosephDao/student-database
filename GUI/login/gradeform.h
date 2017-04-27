@@ -31,6 +31,8 @@ private:
 private slots:
 	void addGrade();
 	void deleteGrade();
+	void editGrade();
+
 };
 
 #endif

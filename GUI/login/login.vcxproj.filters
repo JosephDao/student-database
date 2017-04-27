@@ -109,6 +109,15 @@
     <ClCompile Include="Release\moc_gradeform.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Debug\moc_finddialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_finddialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="finddialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="login.h">
@@ -156,6 +165,12 @@
     <CustomBuild Include="gradeform.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="finddialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="finddialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_login.h">
@@ -177,6 +192,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_gradeform.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_finddialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

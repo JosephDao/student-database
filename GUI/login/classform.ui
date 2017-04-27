@@ -689,6 +689,25 @@ QLineEdit {background-color: white; color: black; border-width: 2 px; border-rad
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="editButton">
+       <property name="minimumSize">
+        <size>
+         <width>40</width>
+         <height>31</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="deleteButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">

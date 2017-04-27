@@ -59,6 +59,7 @@ public:
     QLineEdit *deliveryModeLineEdit;
     QHBoxLayout *horizontalLayout_7;
     QPushButton *addButton;
+    QPushButton *editButton;
     QPushButton *deleteButton;
     QSpacerItem *horizontalSpacer;
     QPushButton *closeButton;
@@ -323,6 +324,13 @@ public:
 
         horizontalLayout_7->addWidget(addButton);
 
+        editButton = new QPushButton(classFormDialog);
+        editButton->setObjectName(QStringLiteral("editButton"));
+        editButton->setMinimumSize(QSize(40, 31));
+        editButton->setFont(font);
+
+        horizontalLayout_7->addWidget(editButton);
+
         deleteButton = new QPushButton(classFormDialog);
         deleteButton->setObjectName(QStringLiteral("deleteButton"));
         sizePolicy.setHeightForWidth(deleteButton->sizePolicy().hasHeightForWidth());
@@ -397,6 +405,7 @@ public:
         daysLabel->setText(QApplication::translate("classFormDialog", "Days:", Q_NULLPTR));
         deliveryModeLabel->setText(QApplication::translate("classFormDialog", "Delivery Mode:", Q_NULLPTR));
         addButton->setText(QApplication::translate("classFormDialog", "Add", Q_NULLPTR));
+        editButton->setText(QApplication::translate("classFormDialog", "Edit", Q_NULLPTR));
         deleteButton->setText(QApplication::translate("classFormDialog", "Delete", Q_NULLPTR));
         closeButton->setText(QApplication::translate("classFormDialog", "Close", Q_NULLPTR));
     } // retranslateUi
