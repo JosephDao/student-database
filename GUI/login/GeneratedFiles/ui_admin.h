@@ -66,6 +66,7 @@ public:
         editButton->setFont(font);
         editButton->setFocusPolicy(Qt::StrongFocus);
         editButton->setStyleSheet(QStringLiteral(""));
+        editButton->setAutoDefault(true);
         searchLineEdit = new QLineEdit(centralwidget);
         searchLineEdit->setObjectName(QStringLiteral("searchLineEdit"));
         searchLineEdit->setGeometry(QRect(630, 60, 741, 51));
@@ -140,7 +141,7 @@ public:
 
         retranslateUi(AdminMainWindow);
 
-        editButton->setDefault(false);
+        editButton->setDefault(true);
         studentButton->setDefault(true);
         courseButton->setDefault(true);
         classButton->setDefault(true);
@@ -153,7 +154,7 @@ public:
 
     void retranslateUi(QMainWindow *AdminMainWindow)
     {
-        AdminMainWindow->setWindowTitle(QApplication::translate("AdminMainWindow", "MainWindow", Q_NULLPTR));
+        AdminMainWindow->setWindowTitle(QApplication::translate("AdminMainWindow", "Student Information", Q_NULLPTR));
         editButton->setText(QApplication::translate("AdminMainWindow", "Modify", Q_NULLPTR));
         searchLineEdit->setText(QString());
         searchLineEdit->setPlaceholderText(QApplication::translate("AdminMainWindow", "Enter ID or leave field blank to navigate to first record", Q_NULLPTR));

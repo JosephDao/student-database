@@ -1,7 +1,9 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
+class FindDialog;
 class QHeaderView;
+class QAction;
 class QSqlRelationalTableModel;
 
 #include "ui_admin.h"

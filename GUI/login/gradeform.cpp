@@ -48,10 +48,10 @@ void GradeForm::setGradeForm(int id)
 	gradeMapper->setSubmitPolicy(QDataWidgetMapper::AutoSubmit);
 	gradeMapper->setModel(gradeModel);
 	gradeMapper->setItemDelegate(new QSqlRelationalDelegate(this));
-	gradeMapper->addMapping(studentIdLineEdit, Student_id);
-	gradeMapper->addMapping(crnLineEdit, Student_fName);
-	gradeMapper->addMapping(assignmentLineEdit, Student_lName);
-	gradeMapper->addMapping(gradeLineEdit, Student_regStatus);
+	gradeMapper->addMapping(crnLineEdit, Enroll_crn);
+	gradeMapper->addMapping(studentIdLineEdit, Enroll_studentId);
+	gradeMapper->addMapping(assignmentLineEdit, Enroll_assignment);
+	gradeMapper->addMapping(gradeLineEdit, Enroll_grade);
 
 	connect(firstButton, SIGNAL(clicked()), gradeMapper, SLOT(toFirst()));
 	connect(previousButton, SIGNAL(clicked()), gradeMapper, SLOT(toPrevious()));
@@ -69,7 +69,7 @@ void GradeForm::setGradeForm(int id)
 		for (int row = 0; row < gradeModel->rowCount(); ++row)
 		{
 			QSqlRecord record = gradeModel->record(row);
-			if (record.value(Student_id).toInt() == id)
+			if (record.value(Enroll_crn).toInt() == id)
 			{
 				gradeMapper->setCurrentIndex(row);
 				break;

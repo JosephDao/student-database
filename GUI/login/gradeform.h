@@ -15,12 +15,12 @@ public:
 	void setGradeForm(int);
 
 private:
-	enum studentAttributes
+	enum Enroll
 	{
-		Student_id = 0,
-		Student_fName = 1,
-		Student_lName = 2,
-		Student_regStatus = 3,
+		Enroll_crn = 0,
+		Enroll_studentId = 1,
+		Enroll_assignment = 2,
+		Enroll_grade = 3,
 	};
 
 	int id;

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Student Information</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {background-color: rgb(235, 239, 240);}
@@ -55,8 +55,11 @@ QPushButton {background-color: rgb(0, 0, 127); color: white; border: 2 px; borde
     <property name="text">
      <string>Modify</string>
     </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
     <property name="default">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="searchLineEdit">

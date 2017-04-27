@@ -1,16 +1,19 @@
-#include <qdatawidgetmapper.h>
+#include <QAction>
 #include <QMessageBox>
 #include <QSqlRelationalTableModel>
 #include <QtGui>
 #include <QCompleter>
+#include <qdatawidgetmapper.h>
+#include <QSqlRelationalDelegate>
 
+#include "finddialog.h"
+#include "gotocelldialog.h"
 #include "admin.h"
 #include "student.h"
 #include "studentform.h"
 #include "courseform.h"
 #include "classform.h"
 #include "gradeform.h"
-#include "finddialog.h"
 
 Admin::Admin(QWidget *parent) : QMainWindow(parent)
 {
@@ -23,7 +26,6 @@ Admin::Admin(QWidget *parent) : QMainWindow(parent)
 	connect(gpaButton, SIGNAL(clicked()), this, SLOT(setGPA()));
 
 	setWindowState(Qt::WindowMaximized);
-
 	show();
 }
 
@@ -52,9 +54,11 @@ void Admin::setStudents()
 
 	adminView->setModel(studentModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
-	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
+//	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
 	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	adminView->setSortingEnabled(true);
+	adminView->setAlternatingRowColors(true);
 
 	studentHeader = adminView->horizontalHeader();
 	studentHeader->setStretchLastSection(true);
@@ -79,16 +83,16 @@ void Admin::setCourses()
 
 	QCompleter *completer = new QCompleter(courseModel, this);
 	searchLineEdit->setCompleter(completer);
-	completer->setCompletionColumn(Course_title);
+	completer->setCompletionColumn(Course_subj);
 	completer->setCaseSensitivity(Qt::CaseInsensitive);
 
 	adminView->setModel(courseModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
-	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
+//	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
 	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-
+	adminView->setSortingEnabled(true);
+	adminView->setAlternatingRowColors(true);
 
 	courseHeader = adminView->horizontalHeader();
 	courseHeader->setStretchLastSection(true);
@@ -117,9 +121,11 @@ void Admin::setClasses()
 
 	adminView->setModel(classModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
-	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
+//	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
 	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	adminView->setSortingEnabled(true);
+	adminView->setAlternatingRowColors(true);
 
 	QCompleter *completer = new QCompleter(classModel, this);
 	searchLineEdit->setCompleter(completer);
@@ -150,9 +156,11 @@ void Admin::setGrades()
 
 	adminView->setModel(enrollModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
-	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
+//	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
 	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	adminView->setSortingEnabled(true);
+	adminView->setAlternatingRowColors(true);
 
 	QCompleter *completer = new QCompleter(enrollModel, this);
 	searchLineEdit->setCompleter(completer);
@@ -180,9 +188,11 @@ void Admin::setGPA()
 	gpaModel->setHeaderData(GPA_gpa, Qt::Horizontal, tr("GPA"));
 	adminView->setModel(gpaModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
-	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
+//	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
 	adminView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+	adminView->setSortingEnabled(true);
+	adminView->setAlternatingRowColors(true);
 
 	studentHeader = adminView->horizontalHeader();
 	studentHeader->setStretchLastSection(true);
@@ -227,3 +237,4 @@ void Admin::displayError()
 {
 	QMessageBox::warning(this, "Error", "GPA cannot be edited from here.");
 }
+

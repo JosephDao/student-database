@@ -170,7 +170,7 @@ public:
 
     void retranslateUi(QMainWindow *loginClass)
     {
-        loginClass->setWindowTitle(QApplication::translate("loginClass", "login", Q_NULLPTR));
+        loginClass->setWindowTitle(QApplication::translate("loginClass", "Login", Q_NULLPTR));
         loginLabel->setText(QApplication::translate("loginClass", "Login", Q_NULLPTR));
         idLineEdit->setPlaceholderText(QApplication::translate("loginClass", "id", Q_NULLPTR));
         passwordLineEdit->setPlaceholderText(QApplication::translate("loginClass", "password", Q_NULLPTR));

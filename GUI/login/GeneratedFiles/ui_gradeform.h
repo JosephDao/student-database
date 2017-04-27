@@ -36,10 +36,10 @@ public:
     QPushButton *lastButton;
     QSpacerItem *horizontalSpacer_6;
     QHBoxLayout *horizontalLayout_3;
-    QLabel *studentIdLabel;
-    QLineEdit *studentIdLineEdit;
     QLabel *crnLabel;
     QLineEdit *crnLineEdit;
+    QLabel *studentIdLabel;
+    QLineEdit *studentIdLineEdit;
     QHBoxLayout *horizontalLayout_2;
     QLabel *assignmentLabel;
     QLineEdit *assignmentLineEdit;
@@ -124,6 +124,31 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        crnLabel = new QLabel(gradeFormDialog);
+        crnLabel->setObjectName(QStringLiteral("crnLabel"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(crnLabel->sizePolicy().hasHeightForWidth());
+        crnLabel->setSizePolicy(sizePolicy1);
+        crnLabel->setMaximumSize(QSize(51, 21));
+        crnLabel->setFont(font);
+        crnLabel->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_3->addWidget(crnLabel);
+
+        crnLineEdit = new QLineEdit(gradeFormDialog);
+        crnLineEdit->setObjectName(QStringLiteral("crnLineEdit"));
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(crnLineEdit->sizePolicy().hasHeightForWidth());
+        crnLineEdit->setSizePolicy(sizePolicy2);
+        crnLineEdit->setFont(font);
+        crnLineEdit->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_3->addWidget(crnLineEdit);
+
         studentIdLabel = new QLabel(gradeFormDialog);
         studentIdLabel->setObjectName(QStringLiteral("studentIdLabel"));
         studentIdLabel->setMaximumSize(QSize(91, 21));
@@ -134,38 +159,16 @@ public:
 
         studentIdLineEdit = new QLineEdit(gradeFormDialog);
         studentIdLineEdit->setObjectName(QStringLiteral("studentIdLineEdit"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(studentIdLineEdit->sizePolicy().hasHeightForWidth());
-        studentIdLineEdit->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(studentIdLineEdit->sizePolicy().hasHeightForWidth());
+        studentIdLineEdit->setSizePolicy(sizePolicy3);
         studentIdLineEdit->setMinimumSize(QSize(188, 29));
         studentIdLineEdit->setFont(font);
         studentIdLineEdit->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_3->addWidget(studentIdLineEdit);
-
-        crnLabel = new QLabel(gradeFormDialog);
-        crnLabel->setObjectName(QStringLiteral("crnLabel"));
-        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Preferred);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(crnLabel->sizePolicy().hasHeightForWidth());
-        crnLabel->setSizePolicy(sizePolicy2);
-        crnLabel->setMaximumSize(QSize(51, 21));
-        crnLabel->setFont(font);
-        crnLabel->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_3->addWidget(crnLabel);
-
-        crnLineEdit = new QLineEdit(gradeFormDialog);
-        crnLineEdit->setObjectName(QStringLiteral("crnLineEdit"));
-        sizePolicy1.setHeightForWidth(crnLineEdit->sizePolicy().hasHeightForWidth());
-        crnLineEdit->setSizePolicy(sizePolicy1);
-        crnLineEdit->setFont(font);
-        crnLineEdit->setAlignment(Qt::AlignCenter);
-
-        horizontalLayout_3->addWidget(crnLineEdit);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
@@ -184,8 +187,8 @@ public:
 
         assignmentLineEdit = new QLineEdit(gradeFormDialog);
         assignmentLineEdit->setObjectName(QStringLiteral("assignmentLineEdit"));
-        sizePolicy1.setHeightForWidth(assignmentLineEdit->sizePolicy().hasHeightForWidth());
-        assignmentLineEdit->setSizePolicy(sizePolicy1);
+        sizePolicy3.setHeightForWidth(assignmentLineEdit->sizePolicy().hasHeightForWidth());
+        assignmentLineEdit->setSizePolicy(sizePolicy3);
         assignmentLineEdit->setMinimumSize(QSize(188, 29));
         assignmentLineEdit->setFont(font);
         assignmentLineEdit->setAlignment(Qt::AlignCenter);
@@ -202,8 +205,8 @@ public:
 
         gradeLineEdit = new QLineEdit(gradeFormDialog);
         gradeLineEdit->setObjectName(QStringLiteral("gradeLineEdit"));
-        sizePolicy1.setHeightForWidth(gradeLineEdit->sizePolicy().hasHeightForWidth());
-        gradeLineEdit->setSizePolicy(sizePolicy1);
+        sizePolicy3.setHeightForWidth(gradeLineEdit->sizePolicy().hasHeightForWidth());
+        gradeLineEdit->setSizePolicy(sizePolicy3);
         gradeLineEdit->setMinimumSize(QSize(61, 29));
         gradeLineEdit->setMaximumSize(QSize(61, 29));
         gradeLineEdit->setFont(font);
@@ -261,8 +264,8 @@ public:
         verticalLayout->addLayout(horizontalLayout_7);
 
 #ifndef QT_NO_SHORTCUT
-        studentIdLabel->setBuddy(studentIdLineEdit);
         crnLabel->setBuddy(crnLineEdit);
+        studentIdLabel->setBuddy(studentIdLineEdit);
         assignmentLabel->setBuddy(assignmentLineEdit);
         gradeLabel->setBuddy(gradeLineEdit);
 #endif // QT_NO_SHORTCUT
@@ -288,11 +291,11 @@ public:
         previousButton->setText(QApplication::translate("gradeFormDialog", "< Previous", Q_NULLPTR));
         nextButton->setText(QApplication::translate("gradeFormDialog", "Next >", Q_NULLPTR));
         lastButton->setText(QApplication::translate("gradeFormDialog", "Last >>", Q_NULLPTR));
-        studentIdLabel->setText(QApplication::translate("gradeFormDialog", "Student Id:", Q_NULLPTR));
-        studentIdLineEdit->setPlaceholderText(QString());
         crnLabel->setText(QApplication::translate("gradeFormDialog", "CRN:", Q_NULLPTR));
         crnLineEdit->setText(QString());
         crnLineEdit->setPlaceholderText(QString());
+        studentIdLabel->setText(QApplication::translate("gradeFormDialog", "Student Id:", Q_NULLPTR));
+        studentIdLineEdit->setPlaceholderText(QString());
         assignmentLabel->setText(QApplication::translate("gradeFormDialog", "Assignment:", Q_NULLPTR));
         assignmentLineEdit->setPlaceholderText(QString());
         gradeLabel->setText(QApplication::translate("gradeFormDialog", "Grade:", Q_NULLPTR));
