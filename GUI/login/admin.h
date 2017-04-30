@@ -16,7 +16,7 @@ public:
 	Admin(QWidget *parent = Q_NULLPTR);
 
 private:
-	enum studentAttributes
+	enum Student
 	{
 		Student_id = 0,
 		Student_fName = 1,
@@ -27,7 +27,7 @@ private:
 		Student_password = 6
 	};
 
-	enum courseAttributes
+	enum Course
 	{
 		Course_subj = 0,
 		Course_no = 1,
@@ -61,15 +61,8 @@ private:
 		GPA_gpa
 	};
 
-	QHeaderView *studentHeader;
-	QHeaderView *courseHeader;
-	QHeaderView *classHeader;
-	QHeaderView *enrollHeader;
-	QSqlRelationalTableModel *studentModel;
-	QSqlRelationalTableModel *courseModel;
-	QSqlRelationalTableModel *classModel;
-	QSqlRelationalTableModel *enrollModel;
-	QSqlRelationalTableModel *gpaModel;
+	QHeaderView *adminHeader;
+	QSqlRelationalTableModel *adminModel;
 	int id;
 
 private slots:

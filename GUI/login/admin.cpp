@@ -6,8 +6,6 @@
 #include <qdatawidgetmapper.h>
 #include <QSqlRelationalDelegate>
 
-#include "finddialog.h"
-#include "gotocelldialog.h"
 #include "admin.h"
 #include "student.h"
 #include "studentform.h"
@@ -37,22 +35,22 @@ void Admin::setStudents()
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayError()));
 	connect(editButton, SIGNAL(clicked()), this, SLOT(displayStudentForm()), Qt::UniqueConnection);
 
-	studentModel = new QSqlRelationalTableModel;
-	studentModel->setTable("student");
-	studentModel->setHeaderData(Student_id, Qt::Horizontal, tr("Student Id"));
-	studentModel->setHeaderData(Student_fName, Qt::Horizontal, tr("First Name"));
-	studentModel->setHeaderData(Student_lName, Qt::Horizontal, tr("Last Name"));
-	studentModel->setHeaderData(Student_regStatus, Qt::Horizontal, tr("Registration Status"));
-	studentModel->setHeaderData(Student_gpa, Qt::Horizontal, tr("GPA"));
-	studentModel->setHeaderData(Student_email, Qt::Horizontal, tr("Email"));
-	studentModel->setHeaderData(Student_password, Qt::Horizontal, tr("Password"));
-	studentModel->select();
+	adminModel = new QSqlRelationalTableModel;
+	adminModel->setTable("student");
+	adminModel->setHeaderData(Student_id, Qt::Horizontal, tr("Student Id"));
+	adminModel->setHeaderData(Student_fName, Qt::Horizontal, tr("First Name"));
+	adminModel->setHeaderData(Student_lName, Qt::Horizontal, tr("Last Name"));
+	adminModel->setHeaderData(Student_regStatus, Qt::Horizontal, tr("Registration Status"));
+	adminModel->setHeaderData(Student_gpa, Qt::Horizontal, tr("GPA"));
+	adminModel->setHeaderData(Student_email, Qt::Horizontal, tr("Email"));
+	adminModel->setHeaderData(Student_password, Qt::Horizontal, tr("Password"));
+	adminModel->select();
 
-	QCompleter *completer = new QCompleter(studentModel, this);
+	QCompleter *completer = new QCompleter(adminModel, this);
 	searchLineEdit->setCompleter(completer);
 	completer->setCompletionColumn(Student_id);
 
-	adminView->setModel(studentModel);
+	adminView->setModel(adminModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
 //	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
@@ -60,9 +58,9 @@ void Admin::setStudents()
 	adminView->setSortingEnabled(true);
 	adminView->setAlternatingRowColors(true);
 
-	studentHeader = adminView->horizontalHeader();
-	studentHeader->setStretchLastSection(true);
-	studentHeader->setSectionResizeMode(QHeaderView::Stretch);
+	adminHeader = adminView->horizontalHeader();
+	adminHeader->setStretchLastSection(true);
+	adminHeader->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void Admin::setCourses()
@@ -73,20 +71,20 @@ void Admin::setCourses()
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayError()));
 	connect(editButton, SIGNAL(clicked()), this, SLOT(displayCourseForm()), Qt::UniqueConnection);
 
-	courseModel = new QSqlRelationalTableModel(this);
-	courseModel->setTable("course");
-	courseModel->setHeaderData(Course_subj, Qt::Horizontal, tr("Subject"));
-	courseModel->setHeaderData(Course_no, Qt::Horizontal, tr("Course Id"));
-	courseModel->setHeaderData(Course_title, Qt::Horizontal, tr("Title"));
-	courseModel->setHeaderData(Course_creditHrs, Qt::Horizontal, tr("Credit Hours"));
-	courseModel->select();
+	adminModel = new QSqlRelationalTableModel(this);
+	adminModel->setTable("course");
+	adminModel->setHeaderData(Course_subj, Qt::Horizontal, tr("Subject"));
+	adminModel->setHeaderData(Course_no, Qt::Horizontal, tr("Course Id"));
+	adminModel->setHeaderData(Course_title, Qt::Horizontal, tr("Title"));
+	adminModel->setHeaderData(Course_creditHrs, Qt::Horizontal, tr("Credit Hours"));
+	adminModel->select();
 
-	QCompleter *completer = new QCompleter(courseModel, this);
+	QCompleter *completer = new QCompleter(adminModel, this);
 	searchLineEdit->setCompleter(completer);
 	completer->setCompletionColumn(Course_subj);
 	completer->setCaseSensitivity(Qt::CaseInsensitive);
 
-	adminView->setModel(courseModel);
+	adminView->setModel(adminModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
 //	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
@@ -94,9 +92,9 @@ void Admin::setCourses()
 	adminView->setSortingEnabled(true);
 	adminView->setAlternatingRowColors(true);
 
-	courseHeader = adminView->horizontalHeader();
-	courseHeader->setStretchLastSection(true);
-	courseHeader->setSectionResizeMode(QHeaderView::Stretch);
+	adminHeader = adminView->horizontalHeader();
+	adminHeader->setStretchLastSection(true);
+	adminHeader->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void Admin::setClasses()
@@ -107,19 +105,19 @@ void Admin::setClasses()
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayError()));
 	connect(editButton, SIGNAL(clicked()), this, SLOT(displayClassForm()), Qt::UniqueConnection);
 
-	classModel = new QSqlRelationalTableModel;
-	classModel->setTable("class");
-	classModel->setHeaderData(Class_crn, Qt::Horizontal, tr("Class Id"));
-	classModel->setHeaderData(Class_subj, Qt::Horizontal, tr("Subject"));
-	classModel->setHeaderData(Class_crseNo, Qt::Horizontal, tr("Course Number"));
-	classModel->setHeaderData(Class_title, Qt::Horizontal, tr("Title"));
-	classModel->setHeaderData(Class_startTime, Qt::Horizontal, tr("Start Time"));
-	classModel->setHeaderData(Class_endTime, Qt::Horizontal, tr("End Time"));
-	classModel->setHeaderData(Class_days, Qt::Horizontal, tr("Days"));
-	classModel->setHeaderData(Class_deliveryMode, Qt::Horizontal, tr("Delivery Mode"));
-	classModel->select();
+	adminModel = new QSqlRelationalTableModel;
+	adminModel->setTable("class");
+	adminModel->setHeaderData(Class_crn, Qt::Horizontal, tr("Class Id"));
+	adminModel->setHeaderData(Class_subj, Qt::Horizontal, tr("Subject"));
+	adminModel->setHeaderData(Class_crseNo, Qt::Horizontal, tr("Course Number"));
+	adminModel->setHeaderData(Class_title, Qt::Horizontal, tr("Title"));
+	adminModel->setHeaderData(Class_startTime, Qt::Horizontal, tr("Start Time"));
+	adminModel->setHeaderData(Class_endTime, Qt::Horizontal, tr("End Time"));
+	adminModel->setHeaderData(Class_days, Qt::Horizontal, tr("Days"));
+	adminModel->setHeaderData(Class_deliveryMode, Qt::Horizontal, tr("Delivery Mode"));
+	adminModel->select();
 
-	adminView->setModel(classModel);
+	adminView->setModel(adminModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
 //	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
@@ -127,14 +125,14 @@ void Admin::setClasses()
 	adminView->setSortingEnabled(true);
 	adminView->setAlternatingRowColors(true);
 
-	QCompleter *completer = new QCompleter(classModel, this);
+	QCompleter *completer = new QCompleter(adminModel, this);
 	searchLineEdit->setCompleter(completer);
 	completer->setCompletionColumn(Class_crn);
 	completer->setCaseSensitivity(Qt::CaseInsensitive);
 
-	classHeader = adminView->horizontalHeader();
-	classHeader->setStretchLastSection(true);
-	classHeader->setSectionResizeMode(QHeaderView::Stretch);
+	adminHeader = adminView->horizontalHeader();
+	adminHeader->setStretchLastSection(true);
+	adminHeader->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void Admin::setGrades()
@@ -146,15 +144,15 @@ void Admin::setGrades()
 
 	connect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()), Qt::UniqueConnection);
 
-	enrollModel = new QSqlRelationalTableModel;
-	enrollModel->setTable("enroll");
-	enrollModel->setHeaderData(Enroll_studentId, Qt::Horizontal, tr("Class Id"));
-	enrollModel->setHeaderData(Enroll_crn, Qt::Horizontal, tr("Student Number"));
-	enrollModel->setHeaderData(Enroll_assignment, Qt::Horizontal, tr("Assignment"));
-	enrollModel->setHeaderData(Enroll_grade, Qt::Horizontal, tr("Grade"));
-	enrollModel->select();
+	adminModel = new QSqlRelationalTableModel;
+	adminModel->setTable("enroll");
+	adminModel->setHeaderData(Enroll_studentId, Qt::Horizontal, tr("Class Id"));
+	adminModel->setHeaderData(Enroll_crn, Qt::Horizontal, tr("Student Number"));
+	adminModel->setHeaderData(Enroll_assignment, Qt::Horizontal, tr("Assignment"));
+	adminModel->setHeaderData(Enroll_grade, Qt::Horizontal, tr("Grade"));
+	adminModel->select();
 
-	adminView->setModel(enrollModel);
+	adminView->setModel(adminModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
 //	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
@@ -162,14 +160,14 @@ void Admin::setGrades()
 	adminView->setSortingEnabled(true);
 	adminView->setAlternatingRowColors(true);
 
-	QCompleter *completer = new QCompleter(enrollModel, this);
+	QCompleter *completer = new QCompleter(adminModel, this);
 	searchLineEdit->setCompleter(completer);
 	completer->setCompletionColumn(Course_subj);
 	completer->setCaseSensitivity(Qt::CaseInsensitive);
 
-	enrollHeader = adminView->horizontalHeader();
-	enrollHeader->setStretchLastSection(true);
-	enrollHeader->setSectionResizeMode(QHeaderView::Stretch);
+	adminHeader = adminView->horizontalHeader();
+	adminHeader->setStretchLastSection(true);
+	adminHeader->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void Admin::setGPA()
@@ -180,13 +178,14 @@ void Admin::setGPA()
 	disconnect(editButton, SIGNAL(clicked()), this, SLOT(displayGradeForm()));
 	connect(editButton, SIGNAL(clicked()), this, SLOT(displayError()), Qt::UniqueConnection);
 
-	gpaModel = new QSqlRelationalTableModel;
-	gpaModel->setTable("gpa");
-	gpaModel->select();
+	adminModel = new QSqlRelationalTableModel;
+	adminModel->setTable("gpa");
+	adminModel->select();
 
-	gpaModel->setHeaderData(GPA_studentId, Qt::Horizontal, tr("Student Id"));
-	gpaModel->setHeaderData(GPA_gpa, Qt::Horizontal, tr("GPA"));
-	adminView->setModel(gpaModel);
+	adminModel->setHeaderData(GPA_studentId, Qt::Horizontal, tr("Student Id"));
+	adminModel->setHeaderData(GPA_gpa, Qt::Horizontal, tr("GPA"));
+
+	adminView->setModel(adminModel);
 	adminView->setSelectionMode(QAbstractItemView::SingleSelection);
 //	adminView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	adminView->resizeColumnsToContents();
@@ -194,9 +193,9 @@ void Admin::setGPA()
 	adminView->setSortingEnabled(true);
 	adminView->setAlternatingRowColors(true);
 
-	studentHeader = adminView->horizontalHeader();
-	studentHeader->setStretchLastSection(true);
-	studentHeader->setSectionResizeMode(QHeaderView::Stretch);
+	adminHeader = adminView->horizontalHeader();
+	adminHeader->setStretchLastSection(true);
+	adminHeader->setSectionResizeMode(QHeaderView::Stretch);
 
 	show();
 }

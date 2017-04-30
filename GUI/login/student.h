@@ -15,7 +15,6 @@ class Student : public QMainWindow, public Ui::StudentMainWindow
 public:
 	Student(QWidget *parent = Q_NULLPTR);
 	void setStudent(QString, QString);
-	void displayStudent(QSqlRelationalTableModel *);
 
 private slots:
 	void refresh();
@@ -24,7 +23,7 @@ private slots:
 	void setGPA();
 
 private:
-	enum studentAttributes
+	enum StudentAttributes
 	{
 		Student_id = 0,
 		Student_fName = 1,
@@ -69,9 +68,6 @@ private:
 	QString studentPassword;
 	QHeaderView *studentHeader;
 	QSqlRelationalTableModel *studentModel;
-	QSqlRelationalTableModel *classModel;
-	QSqlRelationalTableModel *gradeModel;
-	QSqlRelationalTableModel *gpaModel;
 };
 
 #endif

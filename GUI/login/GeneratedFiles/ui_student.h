@@ -29,7 +29,7 @@ class Ui_StudentMainWindow
 public:
     QWidget *centralwidget;
     QTableView *studentView;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *refreshButton;
     QPushButton *classButton;
@@ -52,13 +52,13 @@ public:
         studentView = new QTableView(centralwidget);
         studentView->setObjectName(QStringLiteral("studentView"));
         studentView->setGeometry(QRect(400, 170, 1281, 731));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(51, 192, 303, 227));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(51, 192, 303, 227));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        refreshButton = new QPushButton(widget);
+        refreshButton = new QPushButton(layoutWidget);
         refreshButton->setObjectName(QStringLiteral("refreshButton"));
         refreshButton->setMinimumSize(QSize(301, 51));
         QFont font;
@@ -68,7 +68,7 @@ public:
 
         verticalLayout->addWidget(refreshButton);
 
-        classButton = new QPushButton(widget);
+        classButton = new QPushButton(layoutWidget);
         classButton->setObjectName(QStringLiteral("classButton"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -80,7 +80,7 @@ public:
 
         verticalLayout->addWidget(classButton);
 
-        gradeButton = new QPushButton(widget);
+        gradeButton = new QPushButton(layoutWidget);
         gradeButton->setObjectName(QStringLiteral("gradeButton"));
         sizePolicy.setHeightForWidth(gradeButton->sizePolicy().hasHeightForWidth());
         gradeButton->setSizePolicy(sizePolicy);
@@ -89,7 +89,7 @@ public:
 
         verticalLayout->addWidget(gradeButton);
 
-        gpaButton = new QPushButton(widget);
+        gpaButton = new QPushButton(layoutWidget);
         gpaButton->setObjectName(QStringLiteral("gpaButton"));
         sizePolicy.setHeightForWidth(gpaButton->sizePolicy().hasHeightForWidth());
         gpaButton->setSizePolicy(sizePolicy);

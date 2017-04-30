@@ -35,22 +35,17 @@ void Student::setStudent(QString id, QString password)
 		studentModel->setHeaderData(Student_email, Qt::Horizontal, tr("Email"));
 		studentModel->setHeaderData(Student_password, Qt::Horizontal, tr("Password"));
 
-		displayStudent(studentModel);
-	}
-}
+		studentView->setModel(studentModel);
+		studentView->setSelectionMode(QAbstractItemView::SingleSelection);
+		studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
+		studentView->resizeColumnsToContents();
+		studentView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-void Student::displayStudent(QSqlRelationalTableModel* studentModel)
-{
-	studentView->setModel(studentModel);
-	studentView->setSelectionMode(QAbstractItemView::SingleSelection);
-	studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
-	studentView->resizeColumnsToContents();
-	studentView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-	
-	studentHeader = studentView->horizontalHeader();
-	studentHeader->setStretchLastSection(true);
-	studentHeader->setSectionResizeMode(QHeaderView::Stretch);
-	show();
+		studentHeader = studentView->horizontalHeader();
+		studentHeader->setStretchLastSection(true);
+		studentHeader->setSectionResizeMode(QHeaderView::Stretch);
+		show();
+	}
 }
 
 void Student::refresh()
@@ -63,22 +58,22 @@ void Student::setClasses()
 	studentView->setColumnHidden(0, false);
 	studentView->setColumnHidden(6, false);
 
-	classModel = new QSqlRelationalTableModel;
-	classModel->setTable("studentclass");
-	classModel->setFilter("studentId = " + studentId);
-	classModel->select();
+	studentModel = new QSqlRelationalTableModel;
+	studentModel->setTable("studentclass");
+	studentModel->setFilter("studentId = " + studentId);
+	studentModel->select();
 
-	classModel->setHeaderData(StudentClass_id, Qt::Horizontal, tr("Student Id"));
-	classModel->setHeaderData(StudentClass_crn, Qt::Horizontal, tr("Course Reference Number"));
-	classModel->setHeaderData(StudentClass_subj, Qt::Horizontal, tr("Subject"));
-	classModel->setHeaderData(StudentClass_crseNo, Qt::Horizontal, tr("Course Number"));
-	classModel->setHeaderData(StudentClass_title, Qt::Horizontal, tr("Title"));
-	classModel->setHeaderData(StudentClass_startTime, Qt::Horizontal, tr("Start Time"));
-	classModel->setHeaderData(StudentClass_endTime, Qt::Horizontal, tr("End Time"));
-	classModel->setHeaderData(StudentClass_days, Qt::Horizontal, tr("Days"));
-	classModel->setHeaderData(StudentClass_deliveryMode, Qt::Horizontal, tr("Delivery Mode"));
+	studentModel->setHeaderData(StudentClass_id, Qt::Horizontal, tr("Student Id"));
+	studentModel->setHeaderData(StudentClass_crn, Qt::Horizontal, tr("Course Reference Number"));
+	studentModel->setHeaderData(StudentClass_subj, Qt::Horizontal, tr("Subject"));
+	studentModel->setHeaderData(StudentClass_crseNo, Qt::Horizontal, tr("Course Number"));
+	studentModel->setHeaderData(StudentClass_title, Qt::Horizontal, tr("Title"));
+	studentModel->setHeaderData(StudentClass_startTime, Qt::Horizontal, tr("Start Time"));
+	studentModel->setHeaderData(StudentClass_endTime, Qt::Horizontal, tr("End Time"));
+	studentModel->setHeaderData(StudentClass_days, Qt::Horizontal, tr("Days"));
+	studentModel->setHeaderData(StudentClass_deliveryMode, Qt::Horizontal, tr("Delivery Mode"));
 
-	studentView->setModel(classModel);
+	studentView->setModel(studentModel);
 	studentView->setSelectionMode(QAbstractItemView::SingleSelection);
 	studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	studentView->resizeColumnsToContents();
@@ -93,19 +88,20 @@ void Student::setClasses()
 
 void Student::setGrades()
 {
-	gradeModel = new QSqlRelationalTableModel;
-	gradeModel->setTable("classgrade");
-	gradeModel->setFilter("studentId = " + studentId);
-	gradeModel->select();
+	studentModel = new QSqlRelationalTableModel;
+	studentModel->setTable("classgrade");
+	studentModel->setFilter("studentId = " + studentId);
+	studentModel->select();
 
-	gradeModel->setHeaderData(ClassGrade_studentId, Qt::Horizontal, tr("Student Id"));
-	gradeModel->setHeaderData(ClassGrade_crn, Qt::Horizontal, tr("Course Reference Number"));
-	gradeModel->setHeaderData(ClassGrade_subj, Qt::Horizontal, tr("Subject"));
-	gradeModel->setHeaderData(ClassGrade_crseNo, Qt::Horizontal, tr("Course Number"));
-	gradeModel->setHeaderData(ClassGrade_title, Qt::Horizontal, tr("Title"));
-	gradeModel->setHeaderData(ClassGrade_grade, Qt::Horizontal, tr("Grade"));
-	gradeModel->setHeaderData(ClassGrade_creditHrs, Qt::Horizontal, tr("Credit Hours"));
-	studentView->setModel(gradeModel);
+	studentModel->setHeaderData(ClassGrade_studentId, Qt::Horizontal, tr("Student Id"));
+	studentModel->setHeaderData(ClassGrade_crn, Qt::Horizontal, tr("Course Reference Number"));
+	studentModel->setHeaderData(ClassGrade_subj, Qt::Horizontal, tr("Subject"));
+	studentModel->setHeaderData(ClassGrade_crseNo, Qt::Horizontal, tr("Course Number"));
+	studentModel->setHeaderData(ClassGrade_title, Qt::Horizontal, tr("Title"));
+	studentModel->setHeaderData(ClassGrade_grade, Qt::Horizontal, tr("Grade"));
+	studentModel->setHeaderData(ClassGrade_creditHrs, Qt::Horizontal, tr("Credit Hours"));
+
+	studentView->setModel(studentModel);
 	studentView->setSelectionMode(QAbstractItemView::SingleSelection);
 	studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	studentView->resizeColumnsToContents();
@@ -120,14 +116,15 @@ void Student::setGrades()
 
 void Student::setGPA()
 {
-	gpaModel = new QSqlRelationalTableModel;
-	gpaModel->setTable("gpa");
-	gpaModel->setFilter("studentId = " + studentId);
-	gpaModel->select();
+	studentModel = new QSqlRelationalTableModel;
+	studentModel->setTable("gpa");
+	studentModel->setFilter("studentId = " + studentId);
+	studentModel->select();
 
-	gpaModel->setHeaderData(GPA_studentId, Qt::Horizontal, tr("Student Id"));
-	gpaModel->setHeaderData(GPA_gpa, Qt::Horizontal, tr("GPA"));
-	studentView->setModel(gpaModel);
+	studentModel->setHeaderData(GPA_studentId, Qt::Horizontal, tr("Student Id"));
+	studentModel->setHeaderData(GPA_gpa, Qt::Horizontal, tr("GPA"));
+
+	studentView->setModel(studentModel);
 	studentView->setSelectionMode(QAbstractItemView::SingleSelection);
 	studentView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	studentView->resizeColumnsToContents();
